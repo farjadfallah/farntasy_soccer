@@ -34,8 +34,8 @@ bool DataProvider::get_Player_from_initiail_file(std::string& player_name){
         if(tmp == ';'){
             return true;
         }
-        if (tmp == ',' || tmp == '\n'){
-            player_name = player_name;
+        if (tmp == ',' || tmp == 13){
+            cout << "|" << player_name << "|" << endl;
             return false;
         }
         player_name = player_name + tmp;

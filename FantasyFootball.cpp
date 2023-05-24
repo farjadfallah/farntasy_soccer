@@ -21,7 +21,6 @@ void FantasyFootball::get_initial_data(){
         bool state = true;
         while(true){
             state = data_provider.get_Player_from_initiail_file(player_name);
-            cout <<"this is the name: " << player_name<< endl;
             new_team->add_player(make_shared<GoalKeeper>(player_name));
             player_name.clear();
             if(state == false){
@@ -49,7 +48,9 @@ void FantasyFootball::get_initial_data(){
         }
         while(true){
             state = data_provider.get_Player_from_initiail_file(player_name);
-            new_team->add_player(make_shared<Forward>(player_name));
+            if(player_name != ""){
+                new_team->add_player(make_shared<Forward>(player_name));
+            }
             player_name.clear();
             if(state == false){
                 state = true;
