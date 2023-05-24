@@ -16,47 +16,11 @@ void FantasyFootball::get_initial_data(){
     string new_team_name;
     while(data_provider.get_team_name_from_initial_file(new_team_name)){
         std::shared_ptr<SoccerClub> new_team = make_shared<SoccerClub>(new_team_name);
-        string player_name;
         teams_list.push_back(new_team);
-        bool state = true;
-        while(true){
-            state = data_provider.get_Player_from_initiail_file(player_name);
-            new_team->add_player(make_shared<GoalKeeper>(player_name));
-            player_name.clear();
-            if(state == false){
-                state = true;
-                break;
-            }
-        }
-        while(true){
-            state = data_provider.get_Player_from_initiail_file(player_name);
-            new_team->add_player(make_shared<Defender>(player_name));
-            player_name.clear();
-            if(state == false){
-                state = true;
-                break;
-            }
-        }
-        while(true){
-            state = data_provider.get_Player_from_initiail_file(player_name);
-            new_team->add_player(make_shared<Midfielder>(player_name));
-            player_name.clear();
-            if(state == false){
-                state = true;
-                break;
-            }
-        }
-        while(true){
-            state = data_provider.get_Player_from_initiail_file(player_name);
-            if(player_name != ""){
-                new_team->add_player(make_shared<Forward>(player_name));
-            }
-            player_name.clear();
-            if(state == false){
-                state = true;
-                break;
-            }
-        }
+        find_goalkeepers_from_initial_file(new_team, data_provider);
+        find_defenders_from_initial_file(new_team, data_provider);
+        find_midfielders_from_initial_file(new_team, data_provider);
+        find_Forwards_from_initial_file(new_team, data_provider);
         new_team_name.clear();
     }
 }
@@ -64,5 +28,61 @@ void FantasyFootball::get_initial_data(){
 void FantasyFootball::print(){
     for(shared_ptr<SoccerClub> tmp : teams_list){
         tmp->print();
+    }
+}
+
+void FantasyFootball::find_Forwards_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        new_team->add_player(make_shared<Forward>(player_name));
+    }
+}
+
+void FantasyFootball::find_midfielders_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        new_team->add_player(make_shared<Midfielder>(player_name));
+    }
+}
+
+void FantasyFootball::find_defenders_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        new_team->add_player(make_shared<Defender>(player_name));
+    }
+}
+
+void FantasyFootball::find_goalkeepers_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        new_team->add_player(make_shared<GoalKeeper>(player_name));
     }
 }

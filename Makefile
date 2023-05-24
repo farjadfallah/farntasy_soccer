@@ -20,4 +20,4 @@ ${Build}/SoccerClub.o : SoccerClub.hpp SoccerClub.cpp
 
 
 clear:
-	rm -rf ${BUILD_DIR} && mkdir -p ${BUILD_DIR}
+	rm -rf ${Build} && mkdir -p ${Build} && rm ./a.out
