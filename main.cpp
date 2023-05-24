@@ -40,7 +40,12 @@ enum {
 int main(){
     FantasyFootball fantasy_football;
     fantasy_football.get_initial_data();
-    fantasy_football.print();
+    // fantasy_football.print();
+    for(int i=0;i<19;i++){
+        fantasy_football.pass_week();
+    }
+    fantasy_football.print_weeks_resutls();
+    fantasy_football.print_players_resutls();
     int command_type;
     // while(data_provider.get_command_type(command_type)){
     //     switch (command_type)

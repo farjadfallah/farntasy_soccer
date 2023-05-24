@@ -10,7 +10,9 @@ using namespace std;
 //constructor and destructor
 
 DataProvider::DataProvider(std::string file_path){
+    cout << "this is the path: " << file_path << endl;
     file = ifstream(file_path);
+    cout << "is open: " << file.is_open()<< endl;
 }
 
 DataProvider::~DataProvider(){
@@ -58,3 +60,15 @@ bool DataProvider::get_Player_from_initiail_file(std::string& player_name){
 
 
 //Weeks file
+void DataProvider::get_team_names_from_week_file(std::string& first_team, std::string& second_team ){
+    getline(file, first_team, ':');
+    getline(file, second_team, ',');
+}
+
+void DataProvider::get_team_goals_from_week_file(int& first_team, int& second_team ){
+    std::string first_team_str, second_team_str;
+    getline(file, first_team_str, ':');
+    getline(file, second_team_str, ',');
+    first_team = stoi(first_team_str);
+    second_team = stoi(second_team_str);
+}

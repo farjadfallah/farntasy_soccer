@@ -2,13 +2,17 @@
 #include "DataProvider.hpp"
 #include "Positions.hpp"
 #include "SoccerClub.hpp"
+#include "MatchResult.hpp"
+#include "WeekMatchResults.hpp"
 #include <string>
 #include <iostream>
 #include <memory>
+
 using namespace std;
 
 const string INITIAL_FILEPATH = "./data/premier_league.csv";
-
+const string WEEKS_DATA_FILEPATH = "./data/weeks_stats/week_";
+const string WEEKS_DATA_FILE_EXTENSION = ".csv";
 
 void FantasyFootball::get_initial_data(){
     DataProvider data_provider(INITIAL_FILEPATH);
@@ -41,7 +45,9 @@ void FantasyFootball::find_Forwards_from_initial_file(std::shared_ptr<SoccerClub
         }
         player_name.clear();
         state = data_provider.get_Player_from_initiail_file(player_name);
-        new_team->add_player(make_shared<Forward>(player_name));
+        shared_ptr<Player> tmp = make_shared<Forward>(player_name);
+        new_team->add_player(tmp);
+        players_list.push_back(tmp);
     }
 }
 
@@ -55,7 +61,9 @@ void FantasyFootball::find_midfielders_from_initial_file(std::shared_ptr<SoccerC
         }
         player_name.clear();
         state = data_provider.get_Player_from_initiail_file(player_name);
-        new_team->add_player(make_shared<Midfielder>(player_name));
+        shared_ptr<Player> tmp = make_shared<Midfielder>(player_name);
+        new_team->add_player(tmp);
+        players_list.push_back(tmp);
     }
 }
 
@@ -69,7 +77,9 @@ void FantasyFootball::find_defenders_from_initial_file(std::shared_ptr<SoccerClu
         }
         player_name.clear();
         state = data_provider.get_Player_from_initiail_file(player_name);
-        new_team->add_player(make_shared<Defender>(player_name));
+        shared_ptr<Player> tmp = make_shared<Defender>(player_name);
+        new_team->add_player(tmp);
+        players_list.push_back(tmp);
     }
 }
 
@@ -83,6 +93,144 @@ void FantasyFootball::find_goalkeepers_from_initial_file(std::shared_ptr<SoccerC
         }
         player_name.clear();
         state = data_provider.get_Player_from_initiail_file(player_name);
-        new_team->add_player(make_shared<GoalKeeper>(player_name));
+        shared_ptr<Player> tmp = make_shared<GoalKeeper>(player_name);
+        new_team->add_player(tmp);
+        players_list.push_back(tmp);
+    }
+}
+
+void FantasyFootball::pass_week(){
+    active_week ++;
+    string new_file_path = WEEKS_DATA_FILEPATH + to_string(active_week) + WEEKS_DATA_FILE_EXTENSION;
+    DataProvider data_provider(new_file_path);
+    data_provider.get_header();
+    for(shared_ptr<Player> tmp : players_list){
+        tmp->add_new_point();
+        tmp->pass_one_week_of_injury();
+    }
+    shared_ptr<WeekMatchResults> tmp_week_results = make_shared<WeekMatchResults>();
+    for(int i=0 ; i<10; i++){
+        //find the result
+        string first_team_str, second_team_str;
+        int first_goal, second_goal;
+        data_provider.get_team_names_from_week_file(first_team_str, second_team_str);
+        data_provider.get_team_goals_from_week_file(first_goal, second_goal);
+        shared_ptr<MatchResult> tmp_game_result = make_shared<MatchResult>(first_team_str, second_team_str, first_goal, second_goal);
+        tmp_week_results->add_result(tmp_game_result);
+        //add points to teams
+
+        //get all injured
+        update_injured_players(data_provider);
+        
+        //get cards
+        update_players_yellow_card(data_provider); 
+        update_players_red_card(data_provider);
+
+        //get scores
+        update_players_scores(data_provider);
+    }
+    weeks_results_list.push_back(tmp_week_results);
+    
+}
+
+void FantasyFootball::update_players_scores(DataProvider& data_provider){
+
+    bool state = true;
+    string data;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        data.clear();
+        state = data_provider.get_Player_from_initiail_file(data);
+        if(data !=""){
+            string player_name, score_str;
+            double score;
+            int delimiter_location=0;
+            for(int i=0; i<data.size(); i++){
+                if(data[i] == ':'){
+                    delimiter_location = i;
+                }
+            }
+            player_name = data.substr(0, delimiter_location);
+            score_str = data.substr(delimiter_location + 1, data.size());
+            score = stod(score_str);
+            find_player_by_name(player_name)->edit_new_score(score);
+        }
+    }
+}
+
+
+void FantasyFootball::update_injured_players(DataProvider& data_provider){
+    
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        if(player_name !=""){
+            find_player_by_name(player_name)->injured();
+        }
+    }
+}
+
+void FantasyFootball::update_players_yellow_card(DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        if(player_name !=""){
+            find_player_by_name(player_name)->add_yellow_card();
+        }
+    }
+}
+
+void FantasyFootball::update_players_red_card(DataProvider& data_provider){
+    bool state = true;
+    string player_name;
+    while(true){
+        if(state == false){
+            state = true;
+            break;
+        }
+        player_name.clear();
+        state = data_provider.get_Player_from_initiail_file(player_name);
+        if(player_name !=""){
+            find_player_by_name(player_name)->add_red_Card();
+        }
+    }
+}
+
+
+shared_ptr<Player> FantasyFootball::find_player_by_name(string fullname){
+    for(shared_ptr<Player> tmp : players_list){
+        if(tmp->has_certain_name(fullname)){
+            return tmp;
+        }
+    }
+}
+
+void FantasyFootball::print_weeks_resutls(){
+    for(int i=0; i < weeks_results_list.size(); i++){
+        cout <<"this is week number " << i+1 << ": " << endl;
+        weeks_results_list[i]->print();
+        cout << endl << endl;
+    }
+}
+
+void FantasyFootball::print_players_resutls(){
+    for(int i=0; i < players_list.size(); i++){
+        players_list[i]->print();
+        cout << endl << endl;
     }
 }
