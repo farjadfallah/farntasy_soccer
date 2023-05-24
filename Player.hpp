@@ -1,3 +1,5 @@
+#ifndef __PLAYER__
+#define __PLAYER__
 #include <string>
 #include <vector>
 
@@ -13,3 +15,4 @@ class Player{
         int yellow_card = 0;
         bool missed_next_match = false;
 };
+#endif

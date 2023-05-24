@@ -1,3 +1,5 @@
+#ifndef __SOCCER_CLUB__
+#define __SOCCER_CLUB__
 #include <vector>
 #include <string>
 #include <memory>
@@ -6,7 +8,7 @@
 class SoccerClub {
     public:
         void print();
-        void add_player(std::shared_ptr<Player>);
+        void add_player(std::shared_ptr<Player> new_player);
         SoccerClub(std::string _name);
     private:
         std::string name;
@@ -16,3 +18,4 @@ class SoccerClub {
         int goals_against = 0;
         int goals_difference = 0;
 };  
+#endif

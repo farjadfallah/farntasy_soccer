@@ -40,6 +40,7 @@ enum {
 int main(){
     FantasyFootball fantasy_football;
     fantasy_football.get_initial_data();
+    fantasy_football.print();
     int command_type;
     // while(data_provider.get_command_type(command_type)){
     //     switch (command_type)

@@ -15,6 +15,34 @@ DataProvider::~DataProvider(){
 }
 
 bool DataProvider::get_team_name_from_initial_file(std::string& team_name){
-    string team_name;
-    getline(file, team_name, ',');
+    char tmp;
+    while (file.get(tmp)) {
+        if(tmp == ','){
+            return true;
+        }
+        if (tmp == EOF){
+            return false;
+        }
+        team_name = team_name + tmp;
+    }
+    return false;
+}
+
+bool DataProvider::get_Player_from_initiail_file(std::string& player_name){
+    char tmp;
+    while (file.get(tmp)) {
+        if(tmp == ';'){
+            return true;
+        }
+        if (tmp == ',' || tmp == '\n'){
+            player_name = player_name;
+            return false;
+        }
+        player_name = player_name + tmp;
+    }
+}
+
+void DataProvider::get_header(){
+    string tmp;
+    getline(file,tmp);
 }
