@@ -14,9 +14,7 @@ class FileReader{
     public:
         void get_initial_data(std::vector<std::shared_ptr<SoccerClub> >& teams_list, std::vector<std::shared_ptr<Player> >& players_list);
         void pass_week(int active_week, std::vector<std::shared_ptr<WeekMatchResults> >& weeks_results_list, std::vector<std::shared_ptr<SoccerClub> >& teams_list, std::vector<std::shared_ptr<Player> >& players_list);
-        void print_weeks_resutls();
-        void print_players_resutls();
-        void print_clubs_standings();
+
     private:
         std::shared_ptr<MatchResult> get_result(ReadFileUtil& read_file_util);
         void get_players_list(std::vector<std::string>& selected_players_list, ReadFileUtil& read_file_util);
