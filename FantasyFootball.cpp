@@ -11,6 +11,12 @@
 
 using namespace std;
 
+const std::string GOALKEEPER = "gk";
+const std::string DEFENDER = "df";
+const std::string MIDFIELDER = "md";
+const std::string FORWARD = "fw";
+const int THISWEEK = -1;
+
 
 void FantasyFootball::get_initial_data(){
     file_reader.get_initial_data(teams_list, players_list);
@@ -73,4 +79,38 @@ void FantasyFootball::print(){
     for(shared_ptr<SoccerClub> tmp : teams_list){
         tmp->print();
     }
+}
+
+void FantasyFootball::team_of_the_week(int week){
+    if(week == THISWEEK){
+        week = active_week;
+    }
+    vector<shared_ptr<Player> > selected_players;
+    selected_players.push_back(find_best_player_at_position(week, GOALKEEPER));
+    selected_players.push_back(find_best_player_at_position(week, DEFENDER));
+    selected_players.push_back(find_best_player_at_position(week, DEFENDER,selected_players[1]));
+    selected_players.push_back(find_best_player_at_position(week, MIDFIELDER));
+    selected_players.push_back(find_best_player_at_position(week, FORWARD));
+    //print the vector here
+    for(shared_ptr<Player> tmp : selected_players){
+        tmp->print();
+    }
+}
+
+shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, string position, shared_ptr<Player> excluding){
+    double highest_score;
+    shared_ptr<Player> selected_player;
+    for(shared_ptr<Player> tmp: players_list){
+        if(tmp == excluding){
+            continue;
+        }
+        if(tmp->get_position() != position){
+            continue;
+        }
+        if(tmp->get_score_at_week(week) > highest_score){
+            highest_score = tmp->get_score_at_week(week);
+            selected_player = tmp;
+        }
+    }
+    return selected_player;
 }

@@ -41,12 +41,14 @@ int main(){
     FantasyFootball fantasy_football;
     fantasy_football.get_initial_data();
     // fantasy_football.print();
-    for(int i=0;i<19;i++){
-        fantasy_football.pass_week();
-    }
+    fantasy_football.pass_week();
+    fantasy_football.team_of_the_week();
+    // for(int i=0;i<19;i++){
+    //     fantasy_football.pass_week();
+    // }
     // fantasy_football.print_weeks_resutls();
     // fantasy_football.print_clubs_standings();
-    fantasy_football.print_players_resutls();
+    // fantasy_football.print_players_resutls();
     int command_type;
     // while(read_file_util.get_command_type(command_type)){
     //     switch (command_type)

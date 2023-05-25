@@ -56,3 +56,7 @@ void Player::pass_one_week_of_injury(){
 void Player::reset_misses_next_match_status(){
     missed_next_match = false;
 }
+
+double Player::get_score_at_week(int week){
+    return ratings_each_week[week-1];
+}
