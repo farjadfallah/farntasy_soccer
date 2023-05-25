@@ -1,9 +1,10 @@
 #include "FantasyFootball.hpp"
-#include "DataProvider.hpp"
+#include "ReadFileUtil.hpp"
 #include "Positions.hpp"
 #include "SoccerClub.hpp"
 #include "MatchResult.hpp"
 #include "WeekMatchResults.hpp"
+#include "FileReader.hpp"
 #include <string>
 #include <iostream>
 #include <memory>
@@ -15,18 +16,7 @@ const string WEEKS_DATA_FILEPATH = "./data/weeks_stats/week_";
 const string WEEKS_DATA_FILE_EXTENSION = ".csv";
 
 void FantasyFootball::get_initial_data(){
-    DataProvider data_provider(INITIAL_FILEPATH);
-    data_provider.get_header();
-    string new_team_name;
-    while(data_provider.get_team_name_from_initial_file(new_team_name)){
-        std::shared_ptr<SoccerClub> new_team = make_shared<SoccerClub>(new_team_name);
-        teams_list.push_back(new_team);
-        find_goalkeepers_from_initial_file(new_team, data_provider);
-        find_defenders_from_initial_file(new_team, data_provider);
-        find_midfielders_from_initial_file(new_team, data_provider);
-        find_Forwards_from_initial_file(new_team, data_provider);
-        new_team_name.clear();
-    }
+    file_reader.get_initial_data(teams_list, players_list);
 }
 
 void FantasyFootball::print(){
@@ -35,78 +25,36 @@ void FantasyFootball::print(){
     }
 }
 
-void FantasyFootball::find_Forwards_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
-    vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
-    for(string tmp : selected_players_list){
-        shared_ptr<Player> new_player = make_shared<Forward>(tmp);
-        new_team->add_player(new_player);
-        players_list.push_back(new_player);
-    }
-}
-
-void FantasyFootball::find_midfielders_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
-    vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
-    for(string tmp : selected_players_list){
-        shared_ptr<Player> new_player = make_shared<Midfielder>(tmp);
-        new_team->add_player(new_player);
-        players_list.push_back(new_player);
-    }
-
-}
-
-void FantasyFootball::find_defenders_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
-    vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
-    for(string tmp : selected_players_list){
-        shared_ptr<Player> new_player = make_shared<Defender>(tmp);
-        new_team->add_player(new_player);
-        players_list.push_back(new_player);
-    }
-}
-
-void FantasyFootball::find_goalkeepers_from_initial_file(std::shared_ptr<SoccerClub> new_team, DataProvider& data_provider){
-    vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
-    for(string tmp : selected_players_list){
-        shared_ptr<Player> new_player = make_shared<GoalKeeper>(tmp);
-        new_team->add_player(new_player);
-        players_list.push_back(new_player);
-    }
-
-}
-
 void FantasyFootball::pass_week(){
     active_week ++;
-    string new_file_path = WEEKS_DATA_FILEPATH + to_string(active_week) + WEEKS_DATA_FILE_EXTENSION;
-    DataProvider data_provider(new_file_path);
-    data_provider.get_header();
     for(shared_ptr<Player> tmp : players_list){
         tmp->add_new_point();
         tmp->pass_one_week_of_injury();
         tmp->reset_misses_next_match_status();
     }
+    string new_file_path = WEEKS_DATA_FILEPATH + to_string(active_week) + WEEKS_DATA_FILE_EXTENSION;
+    ReadFileUtil read_file_util(new_file_path);
+    read_file_util.get_header();
     shared_ptr<WeekMatchResults> tmp_week_results = make_shared<WeekMatchResults>();
     for(int i=0 ; i<10; i++){
-        shared_ptr<MatchResult> tmp_game_result = get_result(data_provider); 
+        shared_ptr<MatchResult> tmp_game_result = get_result(read_file_util); 
         tmp_week_results->add_result(tmp_game_result);
         //add points to teams
         update_teams_stats(tmp_game_result);
-        update_injured_players(data_provider);
-        update_players_yellow_card(data_provider); 
-        update_players_red_card(data_provider);
-        update_players_scores(data_provider);
+        update_injured_players(read_file_util);
+        update_players_yellow_card(read_file_util); 
+        update_players_red_card(read_file_util);
+        update_players_scores(read_file_util);
     }
     weeks_results_list.push_back(tmp_week_results);
     
 }
 
-shared_ptr<MatchResult>  FantasyFootball::get_result(DataProvider& data_provider){
+shared_ptr<MatchResult>  FantasyFootball::get_result(ReadFileUtil& read_file_util){
     string first_team_str, second_team_str;
     int first_goal, second_goal;
-    data_provider.get_team_names_from_week_file(first_team_str, second_team_str);
-    data_provider.get_team_goals_from_week_file(first_goal, second_goal);
+    read_file_util.get_team_names_from_week_file(first_team_str, second_team_str);
+    read_file_util.get_team_goals_from_week_file(first_goal, second_goal);
     shared_ptr<MatchResult> tmp_game_result = make_shared<MatchResult>(first_team_str, second_team_str, first_goal, second_goal);
     return tmp_game_result;
 }
@@ -122,7 +70,7 @@ void FantasyFootball::update_teams_stats(shared_ptr<MatchResult> game){
     second_team->add_goals_against(game->second_team_goals_against());
 }
 
-void FantasyFootball::update_players_scores(DataProvider& data_provider){
+void FantasyFootball::update_players_scores(ReadFileUtil& read_file_util){
 
     bool state = true;
     string data;
@@ -132,7 +80,7 @@ void FantasyFootball::update_players_scores(DataProvider& data_provider){
             break;
         }
         data.clear();
-        state = data_provider.get_Player_from_initiail_file(data);
+        state = read_file_util.get_Player_from_file(data);
         if(data !=""){
             string player_name, score_str;
             double score;
@@ -151,31 +99,31 @@ void FantasyFootball::update_players_scores(DataProvider& data_provider){
 }
 
 
-void FantasyFootball::update_injured_players(DataProvider& data_provider){
+void FantasyFootball::update_injured_players(ReadFileUtil& read_file_util){
     vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
+    get_players_list(selected_players_list, read_file_util);
     for(string tmp : selected_players_list){
             find_player_by_name(tmp)->injured();
     } 
 }
 
-void FantasyFootball::update_players_yellow_card(DataProvider& data_provider){
+void FantasyFootball::update_players_yellow_card(ReadFileUtil& read_file_util){
     vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
+    get_players_list(selected_players_list, read_file_util);
     for(string tmp : selected_players_list){
             find_player_by_name(tmp)->add_yellow_card();
     }   
 }
 
-void FantasyFootball::update_players_red_card(DataProvider& data_provider){
+void FantasyFootball::update_players_red_card(ReadFileUtil& read_file_util){
     vector<string> selected_players_list; 
-    get_players_list(selected_players_list, data_provider);
+    get_players_list(selected_players_list, read_file_util);
     for(string tmp : selected_players_list){
             find_player_by_name(tmp)->add_red_Card();
     }
 }
 
-void FantasyFootball::get_players_list(vector<string>& selected_players_list, DataProvider& data_provider){
+void FantasyFootball::get_players_list(vector<string>& selected_players_list, ReadFileUtil& read_file_util){
     bool state = true;
     string player_name;
     while(true){
@@ -184,7 +132,7 @@ void FantasyFootball::get_players_list(vector<string>& selected_players_list, Da
             break;
         }
         player_name.clear();
-        state = data_provider.get_Player_from_initiail_file(player_name);
+        state = read_file_util.get_Player_from_file(player_name);
         if(player_name !=""){
            selected_players_list.push_back(player_name);
         }

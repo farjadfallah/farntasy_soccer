@@ -1,5 +1,5 @@
 #include "FantasyFootball.hpp"
-#include "DataProvider.hpp"
+#include "ReadFileUtil.hpp"
 #include <string>
 
 using namespace std;
@@ -44,11 +44,11 @@ int main(){
     for(int i=0;i<19;i++){
         fantasy_football.pass_week();
     }
-    fantasy_football.print_weeks_resutls();
-    fantasy_football.print_clubs_standings();
-    // fantasy_football.print_players_resutls();
+    // fantasy_football.print_weeks_resutls();
+    // fantasy_football.print_clubs_standings();
+    fantasy_football.print_players_resutls();
     int command_type;
-    // while(data_provider.get_command_type(command_type)){
+    // while(read_file_util.get_command_type(command_type)){
     //     switch (command_type)
     //     {
     //     case POST:
@@ -68,9 +68,9 @@ int main(){
     // }
 }
 
-// void handle_POST_command(DataProvider& data_provider, FantasyFootball& fantasy_football){
+// void handle_POST_command(ReadFileUtil& read_file_util, FantasyFootball& fantasy_football){
 //     int command;
-//     while(data_provider.get_POST_command(command)){
+//     while(read_file_util.get_POST_command(command)){
 //         switch (command)
 //         {
 //         case SIGNUP:
@@ -101,9 +101,9 @@ int main(){
 //     }
 // }
 
-// void handle_GET_command(DataProvider& data_provider, FantasyFootball& fantasy_football){
+// void handle_GET_command(ReadFileUtil& read_file_util, FantasyFootball& fantasy_football){
 //     int command;
-//     while(data_provider.get_GET_command(command)){
+//     while(read_file_util.get_GET_command(command)){
 //         switch (command)
 //         {
 //         case TEAM_OF_THE_WEEK:

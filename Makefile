@@ -1,13 +1,16 @@
 Build=build
 
-a.out: main.cpp ${Build}/FantasyFootball.o ${Build}/DataProvider.o ${Build}/Positions.o ${Build}/MatchResult.o
-	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/DataProvider.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
+a.out: main.cpp ${Build}/FantasyFootball.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/FileReader.o
+	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/FileReader.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
 
-${Build}/FantasyFootball.o : FantasyFootball.hpp FantasyFootball.cpp ${Build}/WeekMatchResults.o  ${Build}/MatchResult.o ${Build}/DataProvider.o ${Build}/Positions.o ${Build}/Player.o ${Build}/SoccerClub.o
+${Build}/FantasyFootball.o : FantasyFootball.hpp FantasyFootball.cpp ${Build}/FileReader.o ${Build}/WeekMatchResults.o  ${Build}/MatchResult.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/Player.o ${Build}/SoccerClub.o
 	g++ -c FantasyFootball.cpp -o ${Build}/FantasyFootball.o
 
-${Build}/DataProvider.o : DataProvider.hpp DataProvider.cpp 
-	g++ -c DataProvider.cpp -o ${Build}/DataProvider.o
+${Build}/FileReader.o : FileReader.hpp FileReader.cpp ${Build}/WeekMatchResults.o  ${Build}/MatchResult.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/Player.o ${Build}/SoccerClub.o
+	g++ -c FileReader.cpp -o ${Build}/FileReader.o
+
+${Build}/ReadFileUtil.o : ReadFileUtil.hpp ReadFileUtil.cpp 
+	g++ -c ReadFileUtil.cpp -o ${Build}/ReadFileUtil.o
 
 ${Build}/Positions.o : Positions.hpp Positions.cpp ${Build}/Player.o 
 	g++ -c Positions.cpp -o ${Build}/Positions.o
