@@ -10,6 +10,10 @@ class SoccerClub {
         void print();
         void add_player(std::shared_ptr<Player> new_player);
         SoccerClub(std::string _name);
+        bool has_certain_name(std::string name);
+        void add_points(int points);
+        void add_goals_for(int goals);
+        void add_goals_against(int goals);
     private:
         std::string name;
         std::vector<std::shared_ptr<Player> > players_in_team;

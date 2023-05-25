@@ -4,7 +4,7 @@
 using namespace std;
 
 void Player::print(){
-    cout << "     this is the player name: |" << full_name << "| injured : " << injury << " yellowCards:" << yellow_card << " missed: "<< missed_next_match << endl;
+    cout << "     this is the player name: |" << full_name << "| post: |" << this->get_position() <<"| injured : " << injury << " yellowCards:" << yellow_card << " missed: "<< missed_next_match << endl;
     cout << "            these are the ratings:" << endl;
     for(int i=0; i < ratings_each_week.size(); i++){
         cout << "           week number " << i+1 << " : " << ratings_each_week[i] << endl;
@@ -50,4 +50,9 @@ void Player::pass_one_week_of_injury(){
     if(injury >= 1){
         injury --;
     }
+}
+
+
+void Player::reset_misses_next_match_status(){
+    missed_next_match = false;
 }

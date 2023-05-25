@@ -45,7 +45,8 @@ int main(){
         fantasy_football.pass_week();
     }
     fantasy_football.print_weeks_resutls();
-    fantasy_football.print_players_resutls();
+    fantasy_football.print_clubs_standings();
+    // fantasy_football.print_players_resutls();
     int command_type;
     // while(data_provider.get_command_type(command_type)){
     //     switch (command_type)
