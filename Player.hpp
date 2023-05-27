@@ -18,6 +18,7 @@ class Player{
         void reset_misses_next_match_status();
         double get_score_at_week(int week);
         double total_points();
+        double average_points();
     private:
         std::string full_name;
         std::vector<double> ratings_each_week;

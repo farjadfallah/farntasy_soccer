@@ -5,6 +5,7 @@ using namespace std;
 
 void Player::print(){
     cout << "     this is the player name: |" << full_name << "| post: |" << this->get_position() <<"| injured : " << injury << " yellowCards:" << yellow_card << " missed: "<< missed_next_match << endl;
+    cout << "Average rating is: " << average_points() << endl;
     cout << "            these are the ratings:" << endl;
     for(int i=0; i < ratings_each_week.size(); i++){
         cout << "           week number " << i+1 << " : " << ratings_each_week[i] << endl;
@@ -67,4 +68,16 @@ double Player::total_points(){
         total_rating += rating;
     }
     return total_rating;
+}
+
+double Player::average_points(){
+    double total_rating =0;
+    int active_days =0;
+    for(double rating : ratings_each_week){
+        total_rating += rating;
+        if(rating != 0){
+            active_days ++;
+        }
+    }
+    return total_rating/active_days;
 }

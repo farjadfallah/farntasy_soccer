@@ -68,7 +68,7 @@ void SoccerClub::print_players_of_team(std::string post, int sorted){
     if(sorted == true){
         for(int i=0; i<selected_list.size(); i++){
             for(int j=i; j<selected_list.size(); j++){
-                if(selected_list[i]->total_points() < selected_list[j]->total_points()){
+                if(selected_list[i]->average_points() < selected_list[j]->average_points()){
                     shared_ptr<Player> tmp = selected_list[i];
                     selected_list[i] = selected_list[j];
                     selected_list[j] = tmp;

@@ -43,10 +43,10 @@ int main(){
     // fantasy_football.print();
     for(int i=0;i<19;i++){
         fantasy_football.pass_week();
-    fantasy_football.matches_result_league();
+    // fantasy_football.matches_result_league();
     cout << endl;
     }
-    // fantasy_football.get_players_of_team("Arsenal FC", "fw");
+    fantasy_football.get_players_of_team("Arsenal FC", "fw", 1);
     // fantasy_football.team_of_the_week(1);
     // fantasy_football.print_weeks_resutls();
     // fantasy_football.print_clubs_standings();
