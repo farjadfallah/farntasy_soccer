@@ -1,12 +1,10 @@
 #include "Positions.hpp"
+#include "MagicNumbers.hpp"
 #include <string>
 
 using namespace std;
 
-const std::string GOALKEEPER = "gk";
-const std::string DEFENDER = "df";
-const std::string MIDFIELDER = "md";
-const std::string FORWARD = "fw";
+
 
 std::string GoalKeeper::get_position(){
     return GOALKEEPER;

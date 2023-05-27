@@ -4,6 +4,9 @@
 #include <string>
 #include <memory>
 #include "Player.hpp"
+#include "MagicNumbers.hpp"
+
+
 
 class SoccerClub {
     public:
@@ -15,6 +18,8 @@ class SoccerClub {
         void add_goals_for(int goals);
         void add_goals_against(int goals);
         bool is_better_than(std::shared_ptr<SoccerClub> compared_to);
+
+        void print_players_of_team(std::string post, int sorted);
     private:
         std::string name;
         std::vector<std::shared_ptr<Player> > players_in_team;

@@ -57,3 +57,28 @@ bool SoccerClub::is_better_than(std::shared_ptr<SoccerClub> compared_to){
     }
     return false;
 }
+
+void SoccerClub::print_players_of_team(std::string post, int sorted){
+    vector<shared_ptr<Player> > selected_list;
+    for(shared_ptr<Player> tmp : players_in_team){
+        if(tmp->get_position() == post || post == ALL_POSTS){
+            selected_list.push_back(tmp);
+        }
+    }
+    if(sorted == true){
+        for(int i=0; i<selected_list.size(); i++){
+            for(int j=i; j<selected_list.size(); j++){
+                if(selected_list[i]->total_points() < selected_list[j]->total_points()){
+                    shared_ptr<Player> tmp = selected_list[i];
+                    selected_list[i] = selected_list[j];
+                    selected_list[j] = tmp;
+                }
+            }
+        }
+    }
+    for(auto tmp : selected_list){
+        tmp->print();
+    }
+    //print
+}
+

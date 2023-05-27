@@ -60,3 +60,11 @@ void Player::reset_misses_next_match_status(){
 double Player::get_score_at_week(int week){
     return ratings_each_week[week-1];
 }
+
+double Player::total_points(){
+    double total_rating =0;
+    for(double rating : ratings_each_week){
+        total_rating += rating;
+    }
+    return total_rating;
+}

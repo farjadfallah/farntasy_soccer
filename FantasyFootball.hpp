@@ -9,19 +9,21 @@
 #include "WeekMatchResults.hpp"
 #include "MatchResult.hpp"
 #include "FileReader.hpp"
-
-const int THISWEEK = -1;
+#include "MagicNumbers.hpp"
 
 class FantasyFootball{
     public:
         void get_initial_data();
         void print();
-        void pass_week();
-        void team_of_the_week(int week = THISWEEK);
         void print_weeks_resutls();
         void print_players_resutls();
+        
+        void pass_week();
+        
+        void team_of_the_week(int week = THISWEEK);
         void print_clubs_standings();
-
+        void get_players_of_team(std::string team_name, std::string post = ALL_POSTS, int sorted = 0);
+        void matches_result_league(int week_num = NO_WEEK_SELECTED_FOR_WEEK_RESULT);
     private:
         std::vector<std::shared_ptr<Player> > players_list;
         std::vector<std::shared_ptr<SoccerClub> > teams_list;

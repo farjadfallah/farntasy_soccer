@@ -1,7 +1,7 @@
 #include "FantasyFootball.hpp"
 #include "ReadFileUtil.hpp"
 #include <string>
-
+#include <iostream>
 using namespace std;
 
 void handle_POST_command();
@@ -41,13 +41,15 @@ int main(){
     FantasyFootball fantasy_football;
     fantasy_football.get_initial_data();
     // fantasy_football.print();
-    fantasy_football.pass_week();
-    for(int i=0;i<18;i++){
+    for(int i=0;i<19;i++){
         fantasy_football.pass_week();
+    fantasy_football.matches_result_league();
+    cout << endl;
     }
-    // fantasy_football.team_of_the_week();
-    fantasy_football.print_weeks_resutls();
-    fantasy_football.print_clubs_standings();
+    // fantasy_football.get_players_of_team("Arsenal FC", "fw");
+    // fantasy_football.team_of_the_week(1);
+    // fantasy_football.print_weeks_resutls();
+    // fantasy_football.print_clubs_standings();
     // fantasy_football.print_players_resutls();
     int command_type;
     // while(read_file_util.get_command_type(command_type)){

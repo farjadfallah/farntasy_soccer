@@ -1,11 +1,10 @@
 #include "MatchResult.hpp"
+#include "MagicNumbers.hpp"
 #include <iostream>
 #include <string>
 using namespace std;
 
-const int WON = 3;
-const int LOST = 0;
-const int DRAW =1;
+
 
 void MatchResult::print(){
     cout << first_team_name << " " << first_team_goals << " : " << second_team_goals << " " << second_team_name << endl;

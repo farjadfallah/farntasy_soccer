@@ -8,6 +8,8 @@
 #include "ReadFileUtil.hpp"
 #include "WeekMatchResults.hpp"
 #include "MatchResult.hpp"
+#include "MagicNumbers.hpp"
+
 
 
 class FileReader{

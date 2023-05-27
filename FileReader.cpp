@@ -4,15 +4,14 @@
 #include "SoccerClub.hpp"
 #include "MatchResult.hpp"
 #include "WeekMatchResults.hpp"
+#include "MagicNumbers.hpp"
 #include <string>
 #include <iostream>
 #include <memory>
 
 using namespace std;
 
-const string INITIAL_FILEPATH = "./data/premier_league.csv";
-const string WEEKS_DATA_FILEPATH = "./data/weeks_stats/week_";
-const string WEEKS_DATA_FILE_EXTENSION = ".csv";
+
 
 void FileReader::get_initial_data(vector<shared_ptr<SoccerClub> >& teams_list, vector<shared_ptr<Player> >& players_list){
     ReadFileUtil read_file_util(INITIAL_FILEPATH);

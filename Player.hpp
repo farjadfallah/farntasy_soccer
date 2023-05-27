@@ -17,6 +17,7 @@ class Player{
         void pass_one_week_of_injury();
         void reset_misses_next_match_status();
         double get_score_at_week(int week);
+        double total_points();
     private:
         std::string full_name;
         std::vector<double> ratings_each_week;

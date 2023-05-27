@@ -5,16 +5,14 @@
 #include "MatchResult.hpp"
 #include "WeekMatchResults.hpp"
 #include "FileReader.hpp"
+#include "MagicNumbers.hpp"
 #include <string>
 #include <iostream>
 #include <memory>
 
 using namespace std;
 
-const std::string GOALKEEPER = "gk";
-const std::string DEFENDER = "df";
-const std::string MIDFIELDER = "md";
-const std::string FORWARD = "fw";
+
 
 
 void FantasyFootball::get_initial_data(){
@@ -87,7 +85,7 @@ void FantasyFootball::team_of_the_week(int week){
     }
     vector<shared_ptr<Player> > selected_players;
     selected_players.push_back(find_best_player_at_position(week, GOALKEEPER));
-    selected_players.push_back(find_best_player_at_position(week, DEFENDER));
+    selected_players.push_back(find_best_player_at_position(week, DEFENDER));   
     selected_players.push_back(find_best_player_at_position(week, DEFENDER,selected_players[1]));
     selected_players.push_back(find_best_player_at_position(week, MIDFIELDER));
     selected_players.push_back(find_best_player_at_position(week, FORWARD));
@@ -126,3 +124,20 @@ void FantasyFootball::sort_soccer_clubs_list(){
         }
     }
 }
+
+void FantasyFootball::get_players_of_team(std::string team_name, std::string post, int sorted){
+    shared_ptr<SoccerClub> selected_team = find_soccer_club_by_name(team_name);
+    selected_team->print_players_of_team(post, sorted);
+}
+
+void FantasyFootball::matches_result_league(int week_num){
+    shared_ptr<WeekMatchResults> selected_week;
+    if(week_num != NO_WEEK_SELECTED_FOR_WEEK_RESULT){
+        selected_week = weeks_results_list[week_num]; 
+    }else{
+        selected_week = weeks_results_list.back();
+    }
+    //print selected_week
+    selected_week->print();
+}
+
