@@ -10,6 +10,7 @@
 #include "MatchResult.hpp"
 #include "FileReader.hpp"
 #include "MagicNumbers.hpp"
+#include "Printer.hpp"
 
 class FantasyFootball{
     public:
@@ -30,6 +31,7 @@ class FantasyFootball{
         std::vector<std::shared_ptr<WeekMatchResults> > weeks_results_list;
         FileReader file_reader;
         int active_week = 0;
+        Printer printer;
 
         std::shared_ptr<SoccerClub> find_soccer_club_by_name(std::string fullname);
         std::shared_ptr<Player> find_player_by_name(std::string fullname);

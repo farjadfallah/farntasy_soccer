@@ -137,7 +137,6 @@ void FantasyFootball::matches_result_league(int week_num){
     }else{
         selected_week = weeks_results_list.back();
     }
-    //print selected_week
-    selected_week->print();
+    printer.print_matches_result_league(selected_week);
 }
 
