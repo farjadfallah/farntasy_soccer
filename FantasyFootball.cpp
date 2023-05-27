@@ -15,7 +15,6 @@ const std::string GOALKEEPER = "gk";
 const std::string DEFENDER = "df";
 const std::string MIDFIELDER = "md";
 const std::string FORWARD = "fw";
-const int THISWEEK = -1;
 
 
 void FantasyFootball::get_initial_data(){
@@ -70,6 +69,7 @@ void FantasyFootball::print_players_resutls(){
 }
 
 void FantasyFootball::print_clubs_standings(){
+    sort_soccer_clubs_list();
     for(shared_ptr<SoccerClub> tmp : teams_list){
         tmp->print();
     }
@@ -113,4 +113,16 @@ shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, strin
         }
     }
     return selected_player;
+}
+
+void FantasyFootball::sort_soccer_clubs_list(){
+    for(int i=0 ; i<teams_list.size(); i++){
+        for (int j=i; j<teams_list.size(); j++){
+            if(teams_list[j]->is_better_than(teams_list[i])){
+                shared_ptr<SoccerClub> tmp = teams_list[i];
+                teams_list[i] = teams_list[j];
+                teams_list[j] = tmp;
+            }
+        }
+    }
 }

@@ -30,11 +30,30 @@ bool SoccerClub::has_certain_name(string _name){
 void SoccerClub::add_points(int points){
     score += points;
 }
+
 void SoccerClub::add_goals_for(int goals){
     goals_for += goals;
     goals_difference += goals;
 }
+
 void SoccerClub::add_goals_against(int goals){
     goals_against += goals;
     goals_difference -= goals;
+}
+
+bool SoccerClub::is_better_than(std::shared_ptr<SoccerClub> compared_to){
+    if(this->score > compared_to->score){
+        return true;
+    }
+    if(this->score == compared_to->score){
+        if(this->goals_difference > compared_to->goals_difference){
+            return true;
+        }
+        if(this->goals_difference == compared_to->goals_difference){
+            if(this->goals_for > compared_to->goals_for){
+                return true;
+            }
+        }
+    }
+    return false;
 }

@@ -10,9 +10,7 @@ using namespace std;
 //constructor and destructor
 
 ReadFileUtil::ReadFileUtil(std::string file_path){
-    cout << "this is the path: " << file_path << endl;
     file = ifstream(file_path);
-    cout << "is open: " << file.is_open()<< endl;
 }
 
 ReadFileUtil::~ReadFileUtil(){
