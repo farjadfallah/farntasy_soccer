@@ -20,7 +20,7 @@ class FantasyFootball{
         void print();
         void print_weeks_resutls();
         void print_players_resutls();
-        
+        void add_admin(std::string username, std::string pass_word);
         void pass_week();
         
         void team_of_the_week(int week = THISWEEK);

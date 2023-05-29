@@ -41,6 +41,7 @@ enum {
 
 int main(){
     FantasyFootball fantasy_football;
+    fantasy_football.add_admin("admin" , "123456");
     fantasy_football.get_initial_data();
     // fantasy_football.print();
     for(int i=0;i<19;i++){
@@ -51,9 +52,9 @@ int main(){
     // fantasy_football.team_of_the_week(1);
 
     // fantasy_football.signup("farjad" , "Farjad83");
+    fantasy_football.register_admin("admin" , "123456");
     fantasy_football.signup("farjad" , "Farjad83");
     fantasy_football.logout();
-    // fantasy_football.register_admin()
     fantasy_football.login("farjad" , "Farjad83");
     // fantasy_football.buy_player("D. Sadi");
     // fantasy_football.buy_player("Tommi O'reilly");

@@ -179,7 +179,7 @@ void FantasyFootball::matches_result_league(int week_num)
 
 void FantasyFootball::signup(string username, string password)
 {
-    if(active_fantasy_team_user != NULL){
+    if(active_fantasy_team_user != NULL || active_admin_user != NULL){
         cout << "hi" << endl;
         throw(BAD_REQUEST());
     }
@@ -210,7 +210,7 @@ void FantasyFootball::login(string username, string password)
 
 void FantasyFootball::logout(){
     active_fantasy_team_user = NULL;
-    //active admin = NULL
+    active_admin_user = NULL;
 }
 
 void FantasyFootball::register_admin(string username, string password)
@@ -268,4 +268,8 @@ void FantasyFootball::check_if_post_is_valid(string post){
     if(post != FORWARD && post!=MIDFIELDER && post != DEFENDER && post != GOALKEEPER){
         throw(BAD_REQUEST());
     }
+}
+
+void FantasyFootball::add_admin(string username, string password){
+    admin_list.push_back(make_shared<Admin>(username, password));
 }
