@@ -59,7 +59,8 @@ class FantasyFootball{
         std::shared_ptr<Player> find_best_player_at_position(int week, std::string position, std::shared_ptr<Player> excluding = NULL);
         std::shared_ptr<FantasyTeam> find_fantasy_team_with_username(std::string username);
         std::shared_ptr<Admin> find_admin_with_username(std::string username);
-
+        
+        void check_if_post_is_valid(std::string post);
         void sort_soccer_clubs_list();
 };
 #endif
