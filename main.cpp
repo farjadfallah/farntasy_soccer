@@ -51,9 +51,10 @@ int main(){
     // fantasy_football.team_of_the_week(1);
 
     // fantasy_football.signup("farjad" , "Farjad83");
-    // fantasy_football.logout();
-    // fantasy_football.signup("farjadi" , "Farjad83");
-    // fantasy_football.login("farjad" , "Farjad83");
+    fantasy_football.signup("farjad" , "Farjad83");
+    fantasy_football.logout();
+    // fantasy_football.register_admin()
+    fantasy_football.login("farjad" , "Farjad83");
     // fantasy_football.buy_player("D. Sadi");
     // fantasy_football.buy_player("Tommi O'reilly");
     // fantasy_football.buy_player("J. Manquillo");

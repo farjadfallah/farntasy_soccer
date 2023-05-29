@@ -193,10 +193,18 @@ void FantasyFootball::signup(string username, string password)
 
 void FantasyFootball::login(string username, string password)
 {
+    if(active_fantasy_team_user != NULL || active_admin_user != NULL){
+        throw(BAD_REQUEST());
+    }
     shared_ptr<FantasyTeam> selected_team = find_fantasy_team_with_username(username);
+    if(selected_team == NULL){
+        throw(NOT_FOUND());
+    }
     if (selected_team->has_certain_password(password))
     {
         active_fantasy_team_user = selected_team;
+    }else{
+        throw(PERMISSION_DENIED());
     }
 }
 
