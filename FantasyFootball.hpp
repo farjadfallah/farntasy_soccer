@@ -35,14 +35,20 @@ class FantasyFootball{
 
         void open_transfer_window();
         void close_transfer_window();
+
+        void buy_player(std::string player_name);
+        void sell_player(std::string player_name);
+
     private:
         std::vector<std::shared_ptr<Player> > players_list;
         std::vector<std::shared_ptr<SoccerClub> > teams_list;
         std::vector<std::shared_ptr<WeekMatchResults> > weeks_results_list;
         std::vector<std::shared_ptr<FantasyTeam> > fantasy_teams_list;
         std::vector<std::shared_ptr<Admin> > admin_list;
+        
         std::shared_ptr<FantasyTeam> active_fantasy_team_user = NULL;
         std::shared_ptr<Admin> active_admin_user = NULL;
+
         FileReader file_reader;
         int active_week = 0;
         Printer printer;

@@ -228,3 +228,13 @@ void FantasyFootball::open_transfer_window(){
 void FantasyFootball::close_transfer_window(){
     transfer_window_open = true;
 }
+
+void FantasyFootball::buy_player(std::string player_name){
+    shared_ptr<Player> new_player = find_player_by_name(player_name);
+    active_fantasy_team_user->add_player(new_player);
+}
+
+void FantasyFootball::sell_player(std::string player_name){
+    shared_ptr<Player> new_player = find_player_by_name(player_name);
+    active_fantasy_team_user->delete_player(new_player);
+}
