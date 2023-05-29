@@ -220,3 +220,11 @@ shared_ptr<Admin> FantasyFootball::find_admin_with_username(string username)
     }
     return NULL;
 }
+
+void FantasyFootball::open_transfer_window(){
+    transfer_window_open = true;
+}
+
+void FantasyFootball::close_transfer_window(){
+    transfer_window_open = true;
+}

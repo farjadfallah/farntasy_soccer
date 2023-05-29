@@ -32,6 +32,9 @@ class FantasyFootball{
         void login(std::string username, std::string password);
         void register_admin(std::string _username, std::string password);
         void logout();
+
+        void open_transfer_window();
+        void close_transfer_window();
     private:
         std::vector<std::shared_ptr<Player> > players_list;
         std::vector<std::shared_ptr<SoccerClub> > teams_list;
@@ -43,6 +46,7 @@ class FantasyFootball{
         FileReader file_reader;
         int active_week = 0;
         Printer printer;
+        bool transfer_window_open = false;
 
         std::shared_ptr<SoccerClub> find_soccer_club_by_name(std::string fullname);
         std::shared_ptr<Player> find_player_by_name(std::string fullname);
