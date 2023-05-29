@@ -60,6 +60,9 @@ void Player::reset_misses_next_match_status(){
 }
 
 double Player::get_score_at_week(int week){
+    if(ratings_each_week.size() <= week-1){
+        throw(BAD_REQUEST());
+    }
     return ratings_each_week[week-1];
 }
 

@@ -113,7 +113,7 @@ void FantasyFootball::team_of_the_week(int week)
 
 shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, string position, shared_ptr<Player> excluding)
 {
-    double highest_score;
+    double highest_score = 0;
     shared_ptr<Player> selected_player;
     for (shared_ptr<Player> tmp : players_list)
     {
