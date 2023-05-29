@@ -33,4 +33,11 @@ class EMPTY : public Exceptions {
             return "Empty";
          } 
 };
+
+class PLAYER_NOT_AVAILABLE_THIS_WEEK : public Exceptions {
+    public:
+        std::string error_message(){
+            return "This player is not available for next week";
+        }
+};
 #endif

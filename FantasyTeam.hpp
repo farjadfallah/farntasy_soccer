@@ -11,6 +11,7 @@ class FantasyTeam {
         void add_player(std::shared_ptr<Player> new_player);
         void delete_player(std::shared_ptr<Player> new_player);
 
+        void pass_week();
         void print();
     private:
         std::string username;
@@ -24,6 +25,8 @@ class FantasyTeam {
         bool once_completed = false;
         bool valid_team = false;
 
-        bool can_sell_player();
+        void check_if_team_can_sell_player();
+        void check_if_team_can_buy_player(std::string post);
+        int players_num_in_position(std::string position);
 
 };

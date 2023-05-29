@@ -23,9 +23,11 @@ void FantasyFootball::pass_week()
     active_week++;
     for (shared_ptr<Player> tmp : players_list)
     {
-        tmp->add_new_point();
-        tmp->pass_one_week_of_injury();
-        tmp->reset_misses_next_match_status();
+        tmp->pass_week();
+    }
+    for (shared_ptr<FantasyTeam> tmp : fantasy_teams_list)
+    {
+        tmp->pass_week();
     }
     file_reader.pass_week(active_week, weeks_results_list, teams_list, players_list);
 }
@@ -258,7 +260,20 @@ void FantasyFootball::close_transfer_window(){
 }
 
 void FantasyFootball::buy_player(std::string player_name){
+    if(active_fantasy_team_user==NULL){
+        throw (BAD_REQUEST());
+    }
+    if(!transfer_window_open){
+        throw(PERMISSION_DENIED());
+    }
     shared_ptr<Player> new_player = find_player_by_name(player_name);
+    new_player->print();
+    if(new_player == NULL){
+        throw(NOT_FOUND());
+    }
+    if(!new_player->can_play_next_week()){
+        throw(PLAYER_NOT_AVAILABLE_THIS_WEEK());
+    }
     active_fantasy_team_user->add_player(new_player);
 }
 

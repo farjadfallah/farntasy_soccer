@@ -1,6 +1,7 @@
 #include "Player.hpp"
 #include <iostream>
 #include "Exceptions.hpp"
+#include "MagicNumbers.hpp"
 
 using namespace std;
 
@@ -84,4 +85,21 @@ double Player::average_points(){
         }
     }
     return total_rating/active_days;
+}
+
+bool Player::can_play_next_week(){
+    if(missed_next_match == true){
+        return false;
+    }
+    if(injury > NOT_INJURED){
+        return false;
+    }
+    return true;
+}
+
+
+void Player::pass_week(){
+    add_new_point();
+    pass_one_week_of_injury();
+    reset_misses_next_match_status();
 }

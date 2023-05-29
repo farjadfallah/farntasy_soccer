@@ -2,6 +2,7 @@
 #define __PLAYER__
 #include <string>
 #include <vector>
+#include "MagicNumbers.hpp"
 
 class Player{
     public:
@@ -12,18 +13,21 @@ class Player{
         void injured();
         void add_yellow_card();
         void add_red_Card();
-        void add_new_point();
         void edit_new_score(double new_score);
-        void pass_one_week_of_injury();
-        void reset_misses_next_match_status();
         double get_score_at_week(int week);
         double total_points();
         double average_points();
+        bool can_play_next_week();
+        void pass_week();
     private:
         std::string full_name;
         std::vector<double> ratings_each_week;
-        int injury = 0;
+        int injury = NOT_INJURED;
         int yellow_card = 0;
         bool missed_next_match = false;
+        
+        void add_new_point();
+        void pass_one_week_of_injury();
+        void reset_misses_next_match_status();
 };
 #endif

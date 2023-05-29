@@ -45,20 +45,21 @@ int main(){
     fantasy_football.register_admin("admin" , "123456");
     fantasy_football.get_initial_data();
     // fantasy_football.print();
-    for(int i=0;i<19;i++){
-        fantasy_football.pass_week();
-    }
+    // for(int i=0;i<19;i++){
+    //     fantasy_football.pass_week();
+    // }
     
+    fantasy_football.open_transfer_window();
     fantasy_football.logout();
     fantasy_football.signup("farjad" , "Farjad83");
-    fantasy_football.open_transfer_window();
     fantasy_football.buy_player("D. Sadi");
-    fantasy_football.buy_player("Tommi O'reilly");
+    fantasy_football.pass_week();
     fantasy_football.buy_player("J. Manquillo");
+    // fantasy_football.buy_player("Tommi O'reilly");
     fantasy_football.sell_player("J. Manquillo");
     fantasy_football.logout();
     fantasy_football.login("farjad" , "Farjad83");
-    fantasy_football.sell_player("Tommi O'reilly");
+    // fantasy_football.sell_player("Tommi O'reilly");
     // fantasy_football.sell_player("D. Sadi");
     // fantasy_football.matches_result_league(19);
     // fantasy_football.get_players_of_team("Arsenal FC", "fw", 1);
