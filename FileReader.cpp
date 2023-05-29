@@ -5,6 +5,8 @@
 #include "MatchResult.hpp"
 #include "WeekMatchResults.hpp"
 #include "MagicNumbers.hpp"
+#include "Exceptions.hpp"
+
 #include <string>
 #include <iostream>
 #include <memory>

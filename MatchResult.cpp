@@ -2,6 +2,8 @@
 #include "MagicNumbers.hpp"
 #include <iostream>
 #include <string>
+#include "Exceptions.hpp"
+
 using namespace std;
 
 

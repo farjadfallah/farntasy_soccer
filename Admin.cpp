@@ -1,4 +1,5 @@
 #include "Admin.hpp"
+#include "Exceptions.hpp"
 #include <string>
 
 using namespace std;

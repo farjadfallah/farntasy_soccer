@@ -1,4 +1,6 @@
 #include "Printer.hpp"
+#include "Exceptions.hpp"
+
 #include <iostream>
 
 using namespace std;

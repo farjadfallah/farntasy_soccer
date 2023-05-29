@@ -1,4 +1,5 @@
 #include "WeekMatchResults.hpp"
+#include "Exceptions.hpp"
 #include <memory>
 #include <iostream>
 using namespace std;

@@ -2,6 +2,8 @@
 #include "ReadFileUtil.hpp"
 #include <string>
 #include <iostream>
+#include "Exceptions.hpp"
+
 using namespace std;
 
 void handle_POST_command();

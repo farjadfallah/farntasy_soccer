@@ -1,6 +1,7 @@
 #include "Positions.hpp"
 #include "MagicNumbers.hpp"
 #include <string>
+#include "Exceptions.hpp"
 
 using namespace std;
 

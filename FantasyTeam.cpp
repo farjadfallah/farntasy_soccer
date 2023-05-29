@@ -1,6 +1,7 @@
 #include "FantasyTeam.hpp"
 #include <string>
 #include <iostream>
+#include "Exceptions.hpp"
 
 using namespace std;
 

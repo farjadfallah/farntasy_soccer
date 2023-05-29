@@ -1,5 +1,6 @@
 #include "SoccerClub.hpp"
 #include <iostream>
+#include "Exceptions.hpp"
 
 using namespace std;
 
