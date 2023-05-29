@@ -23,5 +23,7 @@ class FantasyTeam {
         int players_sold_this_week =0;
         bool once_completed = false;
         bool valid_team = false;
-    
+
+        bool can_sell_player();
+
 };

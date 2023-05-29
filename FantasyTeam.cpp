@@ -30,6 +30,9 @@ void FantasyTeam::add_player(shared_ptr<Player> new_player){
 }
 
 void FantasyTeam::delete_player(shared_ptr<Player> new_player){
+    if(!this->can_sell_player()){
+        throw (PERMISSION_DENIED());
+    }
     for(int i=0; i<tmp_squad_players_list.size(); i++){
         if(tmp_squad_players_list[i] == new_player){
             tmp_squad_players_list.erase(tmp_squad_players_list.begin() + i);
@@ -37,6 +40,7 @@ void FantasyTeam::delete_player(shared_ptr<Player> new_player){
             return;
         }
     } 
+    throw(NOT_FOUND());
 }
 
 void FantasyTeam::print(){
@@ -46,4 +50,11 @@ void FantasyTeam::print(){
         tmp->print();
     }
     cout << "---" << endl << endl;
+}
+
+bool FantasyTeam::can_sell_player(){
+    if(players_sold_this_week >= 2 ){
+        return false;
+    }
+    return true;
 }

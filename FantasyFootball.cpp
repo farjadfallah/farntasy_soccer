@@ -263,6 +263,12 @@ void FantasyFootball::buy_player(std::string player_name){
 }
 
 void FantasyFootball::sell_player(std::string player_name){
+    if(active_fantasy_team_user==NULL){
+        throw (BAD_REQUEST());
+    }
+    if(!transfer_window_open){
+        throw(PERMISSION_DENIED());
+    }
     shared_ptr<Player> new_player = find_player_by_name(player_name);
     active_fantasy_team_user->delete_player(new_player);
 }
