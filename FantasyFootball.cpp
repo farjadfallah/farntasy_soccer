@@ -187,9 +187,31 @@ void FantasyFootball::logout(){
     active_fantasy_team_user = NULL;
     //active admin = NULL
 }
+
+void FantasyFootball::register_admin(string username, string password)
+{
+    shared_ptr<Admin> selected_Admin = find_admin_with_username(username);
+    if (selected_Admin->has_certain_password(password))
+    {
+        active_admin_user = selected_Admin;
+    }
+}
+
 shared_ptr<FantasyTeam> FantasyFootball::find_fantasy_team_with_username(string username)
 {
     for (shared_ptr<FantasyTeam> tmp : fantasy_teams_list)
+    {
+        if (tmp->has_certain_username(username))
+        {
+            return tmp;
+        }
+    }
+    return NULL;
+}
+
+shared_ptr<Admin> FantasyFootball::find_admin_with_username(string username)
+{
+    for (shared_ptr<Admin> tmp : admin_list)
     {
         if (tmp->has_certain_username(username))
         {
