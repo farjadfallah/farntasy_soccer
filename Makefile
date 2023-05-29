@@ -1,7 +1,7 @@
 Build=build
 
-a.out: main.cpp ${Build}/FantasyFootball.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/FileReader.o
-	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/Printer.o  ${Build}/FileReader.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
+a.out: main.cpp ${Build}/FantasyFootball.o ${Build}/FantasyTeam.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/FileReader.o
+	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/FantasyTeam.o ${Build}/Printer.o  ${Build}/FileReader.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
 
 ${Build}/FantasyFootball.o : FantasyFootball.hpp FantasyFootball.cpp ${Build}/Printer.o  ${Build}/FileReader.o ${Build}/WeekMatchResults.o  ${Build}/MatchResult.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/Player.o ${Build}/SoccerClub.o
 	g++ -c FantasyFootball.cpp -o ${Build}/FantasyFootball.o
@@ -29,6 +29,9 @@ ${Build}/WeekMatchResults.o : WeekMatchResults.hpp WeekMatchResults.cpp ${Build}
 
 ${Build}/Printer.o : Printer.hpp Printer.cpp 
 	g++ -c Printer.cpp -o ${Build}/Printer.o
+
+${Build}/FantasyTeam.o : FantasyTeam.hpp FantasyTeam.cpp ${Build}/Player.o
+	g++ -c FantasyTeam.cpp -o ${Build}/FantasyTeam.o
 
 clear:
 	rm -rf ${Build} && mkdir -p ${Build} && rm ./a.out

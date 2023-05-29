@@ -47,6 +47,10 @@ int main(){
     cout << endl;
     }
     fantasy_football.get_players_of_team("Arsenal FC", "fw", 1);
+
+    fantasy_football.signup("farjad" , "Farjad83");
+    fantasy_football.login("farjad" , "Farjad83");
+
     // fantasy_football.team_of_the_week(1);
     // fantasy_football.print_weeks_resutls();
     // fantasy_football.print_clubs_standings();
