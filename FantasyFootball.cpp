@@ -165,7 +165,10 @@ void FantasyFootball::matches_result_league(int week_num)
     shared_ptr<WeekMatchResults> selected_week;
     if (week_num != NO_WEEK_SELECTED_FOR_WEEK_RESULT)
     {
-        selected_week = weeks_results_list[week_num];
+        if(weeks_results_list.size() <= week_num-1){
+            throw(BAD_REQUEST());
+        }
+        selected_week = weeks_results_list[week_num-1];
     }
     else
     {
