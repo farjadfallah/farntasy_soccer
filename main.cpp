@@ -53,9 +53,9 @@ int main(){
 
     // fantasy_football.signup("farjad" , "Farjad83");
     fantasy_football.register_admin("admin" , "123456");
-    fantasy_football.signup("farjad" , "Farjad83");
-    fantasy_football.logout();
-    fantasy_football.login("farjad" , "Farjad83");
+    // fantasy_football.signup("farjad" , "Farjad83");
+    // fantasy_football.logout();
+    // fantasy_football.login("farjad" , "Farjad83");
     // fantasy_football.buy_player("D. Sadi");
     // fantasy_football.buy_player("Tommi O'reilly");
     // fantasy_football.buy_player("J. Manquillo");
