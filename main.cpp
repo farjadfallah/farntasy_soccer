@@ -46,11 +46,13 @@ int main(){
     for(int i=0;i<19;i++){
         fantasy_football.pass_week();
     }
-    fantasy_football.matches_result_league(19);
+    // fantasy_football.matches_result_league(19);
     // fantasy_football.get_players_of_team("Arsenal FC", "fw", 1);
     // fantasy_football.team_of_the_week(1);
 
     // fantasy_football.signup("farjad" , "Farjad83");
+    // fantasy_football.logout();
+    // fantasy_football.signup("farjadi" , "Farjad83");
     // fantasy_football.login("farjad" , "Farjad83");
     // fantasy_football.buy_player("D. Sadi");
     // fantasy_football.buy_player("Tommi O'reilly");

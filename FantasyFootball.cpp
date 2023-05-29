@@ -179,7 +179,16 @@ void FantasyFootball::matches_result_league(int week_num)
 
 void FantasyFootball::signup(string username, string password)
 {
+    if(active_fantasy_team_user != NULL){
+        cout << "hi" << endl;
+        throw(BAD_REQUEST());
+    }
+    if(find_fantasy_team_with_username(username) != NULL){
+        cout << "2" << endl;
+        throw(BAD_REQUEST());
+    }
     fantasy_teams_list.push_back(make_shared<FantasyTeam>(username, password));
+    active_fantasy_team_user = fantasy_teams_list[fantasy_teams_list.size() -1];
 }
 
 void FantasyFootball::login(string username, string password)
