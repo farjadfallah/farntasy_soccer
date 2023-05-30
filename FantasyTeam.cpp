@@ -30,6 +30,9 @@ void FantasyTeam::add_player(shared_ptr<Player> new_player){
     check_if_team_can_buy_player(new_player->get_position());
     tmp_squad_players_list.push_back(new_player);
     players_bought_this_week ++;
+    if(tmp_squad_players_list.size() == 5){
+        once_completed = true;
+    }
 }
 
 void FantasyTeam::delete_player(shared_ptr<Player> new_player){
@@ -45,7 +48,7 @@ void FantasyTeam::delete_player(shared_ptr<Player> new_player){
 }
 
 void FantasyTeam::print(){
-    cout << "this is the team_name: |" << username << "|" << endl;
+    cout << "this is the team_name: |" << username << "| and this is the score:" << points << endl;
     cout << "and these are the players: " << endl;
     for(shared_ptr<Player> tmp : tmp_squad_players_list ){
         tmp->print();
@@ -61,7 +64,7 @@ void FantasyTeam::check_if_team_can_sell_player(){
 }
 
 void FantasyTeam::check_if_team_can_buy_player(string post){
-    if(players_bought_this_week >=1 ){
+    if(players_bought_this_week >=1 && once_completed){
         throw(PERMISSION_DENIED());
     }
     if(players_num_in_position(post) >= MAX_POSITION_NUMBER.at(post)){
@@ -80,9 +83,28 @@ int FantasyTeam::players_num_in_position(string position){
     return count;
 }
 
-void FantasyTeam::pass_week(){
+void FantasyTeam::pass_week(int new_week){
     players_list_each_week.push_back(tmp_squad_players_list);
     players_bought_this_week = 0;
     players_sold_this_week = 0;
     //should be done
+    //calculate the new week score if team was valid(5 players)
+    if(tmp_squad_players_list.size() >= 5){
+        //add the new score to each_week_score_list
+        points_each_week.push_back(calculate_total_score(new_week));
+        //add the new score to the total score
+        points += calculate_total_score(new_week);
+
+    }else{
+        //add 0 to new score each week score list
+    }
+
+}
+
+double FantasyTeam::calculate_total_score(int week){
+    double total_score =0;
+    for(shared_ptr<Player> tmp: tmp_squad_players_list){
+        total_score += tmp->get_score_at_week(week);
+    }
+    return total_score;
 }

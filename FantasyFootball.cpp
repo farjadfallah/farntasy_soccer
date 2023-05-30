@@ -25,11 +25,12 @@ void FantasyFootball::pass_week()
     {
         tmp->pass_week();
     }
+    file_reader.pass_week(active_week, weeks_results_list, teams_list, players_list);
     for (shared_ptr<FantasyTeam> tmp : fantasy_teams_list)
     {
-        tmp->pass_week();
+        tmp->pass_week(active_week);
+        tmp->print();
     }
-    file_reader.pass_week(active_week, weeks_results_list, teams_list, players_list);
 }
 
 shared_ptr<Player> FantasyFootball::find_player_by_name(string fullname)
@@ -267,7 +268,6 @@ void FantasyFootball::buy_player(std::string player_name){
         throw(PERMISSION_DENIED());
     }
     shared_ptr<Player> new_player = find_player_by_name(player_name);
-    new_player->print();
     if(new_player == NULL){
         throw(NOT_FOUND());
     }
