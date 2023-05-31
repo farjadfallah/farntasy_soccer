@@ -36,7 +36,7 @@ void CommandDeligator::handle_GET_command(int command_number){
         this->players();
         break;
     case LEAGUE_STANDINGS:
-
+        this->league_standings();
         break;
     case USER_RANKING:
     
@@ -178,4 +178,9 @@ void CommandDeligator::players(){
     bool sorted = has_certain_feild(RANKED_FIELD);
     string post = has_wich_field(POSITIONS_LIST);
     fantasy_football->get_players_of_team(team_name, post, sorted);
+}
+
+void CommandDeligator::league_standings(){
+    cout << "this is from league_standings" << endl;
+    fantasy_football->print_clubs_standings();
 }

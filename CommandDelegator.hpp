@@ -10,6 +10,7 @@ class CommandDeligator {
 
         void team_of_the_week();
         void players();
+        void league_standings();
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
