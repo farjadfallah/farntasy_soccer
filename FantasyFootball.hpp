@@ -38,7 +38,7 @@ class FantasyFootball{
 
         void buy_player(std::string player_name);
         void sell_player(std::string player_name);
-
+        void squad(std::string team_name = NO_TEAM_SELECTED);
     private:
         std::vector<std::shared_ptr<Player> > players_list;
         std::vector<std::shared_ptr<SoccerClub> > teams_list;

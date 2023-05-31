@@ -297,3 +297,19 @@ void FantasyFootball::check_if_post_is_valid(string post){
 void FantasyFootball::add_admin(string username, string password){
     admin_list.push_back(make_shared<Admin>(username, password));
 }
+
+void FantasyFootball::squad(std::string team_name = NO_TEAM_SELECTED){
+    shared_ptr<FantasyTeam> selected_team;
+    if(team_name != NO_TEAM_SELECTED){
+        selected_team = find_fantasy_team_with_username(team_name);
+    } else if(active_admin_user!=NULL){
+        selected_team = active_fantasy_team_user;
+    }else{
+        throw(BAD_REQUEST());
+    }    
+    if(selected_team == NULL){
+        throw(NOT_FOUND());
+    }
+    selected_team->squad(printer);
+    
+}

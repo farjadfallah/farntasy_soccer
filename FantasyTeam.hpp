@@ -2,7 +2,7 @@
 #include <string>
 #include <memory>
 #include "Player.hpp"
-
+#include "Printer.hpp"
 class FantasyTeam {
     public:
         FantasyTeam(std::string _username, std::string password);
@@ -13,6 +13,7 @@ class FantasyTeam {
 
         void pass_week(int new_week);
         void print();
+        void squad(Printer& printer);
     private:
         std::string username;
         std::string password;
@@ -29,5 +30,6 @@ class FantasyTeam {
         void check_if_team_can_buy_player(std::string post);
         int players_num_in_position(std::string position);
         double calculate_total_score(int week);
+        vector<shared_ptr<Player> > FantasyTeam::get_player_with_position(string post);
 
 };
