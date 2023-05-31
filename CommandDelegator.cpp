@@ -46,7 +46,7 @@ void CommandDeligator::handle_GET_command(int command_number){
         break;
     }
     case SQUAD:
-    
+        this->squad();
         break;
     default:
         break;
@@ -135,7 +135,7 @@ string CommandDeligator::get_field_string(string field_name){
             break;
         }
     }
-    return result;
+    return "";
 }
 
 bool CommandDeligator::has_certain_feild(string field_name){
@@ -192,4 +192,10 @@ void CommandDeligator::matches_result_league(){
     cout << "this is from matches_result_league" << endl;
     int week_num = get_field_int(WEEK_NUMBER_FIELD);
     fantasy_football->matches_result_league(week_num);
+}
+
+void CommandDeligator::squad(){
+    cout << "this is from squad" << endl;
+    string team_name = get_field_string(FANTASY_TEAM_FIELD);
+    fantasy_football->squad(team_name);
 }

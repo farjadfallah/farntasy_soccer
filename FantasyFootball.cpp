@@ -302,7 +302,7 @@ void FantasyFootball::squad(std::string team_name ){
     shared_ptr<FantasyTeam> selected_team;
     if(team_name != NO_TEAM_SELECTED){
         selected_team = find_fantasy_team_with_username(team_name);
-    } else if(active_admin_user!=NULL){
+    } else if(active_fantasy_team_user!=NULL){
         selected_team = active_fantasy_team_user;
     }else{
         throw(BAD_REQUEST());
