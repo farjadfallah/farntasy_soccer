@@ -39,7 +39,7 @@ void CommandDeligator::handle_GET_command(int command_number){
         this->league_standings();
         break;
     case USER_RANKING:
-    
+        this->users_ranking();
         break;
     case MATHCES_RESULT_LEAGUE: {
         int week_num = get_field_int("week_num");
@@ -183,4 +183,9 @@ void CommandDeligator::players(){
 void CommandDeligator::league_standings(){
     cout << "this is from league_standings" << endl;
     fantasy_football->print_clubs_standings();
+}
+
+void CommandDeligator::users_ranking(){
+    cout << "this is from users_ranking" << endl;
+    fantasy_football->users_ranking();
 }
