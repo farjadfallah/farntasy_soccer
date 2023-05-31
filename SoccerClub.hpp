@@ -19,7 +19,7 @@ class SoccerClub {
         void add_goals_against(int goals);
         bool is_better_than(std::shared_ptr<SoccerClub> compared_to);
 
-        void print_players_of_team(std::string post, int sorted);
+        void print_players_of_team(std::string post, bool sorted);
     private:
         std::string name;
         std::vector<std::shared_ptr<Player> > players_in_team;

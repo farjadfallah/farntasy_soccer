@@ -153,7 +153,7 @@ void FantasyFootball::sort_soccer_clubs_list()
     }
 }
 
-void FantasyFootball::get_players_of_team(std::string team_name, string post, int sorted)
+void FantasyFootball::get_players_of_team(std::string team_name, string post, bool sorted)
 {
     shared_ptr<SoccerClub> selected_team = find_soccer_club_by_name(team_name);
     if(selected_team == NULL){
@@ -289,7 +289,7 @@ void FantasyFootball::sell_player(std::string player_name){
 }
 
 void FantasyFootball::check_if_post_is_valid(string post){
-    if(post != FORWARD && post!=MIDFIELDER && post != DEFENDER && post != GOALKEEPER){
+    if(post != FORWARD && post!=MIDFIELDER && post != DEFENDER && post != GOALKEEPER && post != ALL_POSTS){
         throw(BAD_REQUEST());
     }
 }

@@ -9,7 +9,7 @@ class CommandDeligator {
 
 
         void team_of_the_week();
-
+        void players();
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
@@ -21,6 +21,8 @@ class CommandDeligator {
         void handle_POST_command(int command_number);
         int get_field_int(std::string field_name);
         std::string get_field_string(std::string field_name);
+        bool has_certain_feild(std::string feild_name);
+        std::string has_wich_field(std::vector<std::string> field_options);
 };
 
 // const std::vector<std::string>GET_COMMANDS_LIST = { "team_of_the_week", "players", "league_standings", "users_ranking", "matches_result_league", "squad"};

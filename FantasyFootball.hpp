@@ -25,7 +25,7 @@ class FantasyFootball{
         
         void team_of_the_week(int week = THISWEEK);
         void print_clubs_standings();
-        void get_players_of_team(std::string team_name, std::string post = ALL_POSTS, int sorted = 0);
+        void get_players_of_team(std::string team_name, std::string post = ALL_POSTS, bool sorted = false);
         void matches_result_league(int week_num = NO_WEEK_SELECTED_FOR_WEEK_RESULT);
 
         void signup(std::string _username, std::string password);

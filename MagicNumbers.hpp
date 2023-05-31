@@ -7,9 +7,10 @@ const std::string DEFENDER = "df";
 const std::string MIDFIELDER = "md";
 const std::string FORWARD = "fw";
 
+const std::vector<std::string> POSITIONS_LIST = {"gk", "df", "md", "fw" };
 
 const int THISWEEK = -1;
-const std::string ALL_POSTS = "ALL";
+const std::string ALL_POSTS = "";
 
 const std::map<std::string, int> MAX_POSITION_NUMBER { { GOALKEEPER, 1}, { DEFENDER, 2 }, {MIDFIELDER , 1}, {FORWARD, 1} };
 
@@ -69,4 +70,6 @@ const int COMMAND_NAME_POSITION = 1;
 //feilds name
 
 const std::string WEEK_NUMBER_FIELD = "week_num";
+const std::string TEAM_NAME_FIELD = "team_name";
+const std::string RANKED_FIELD = "ranks";
 #endif

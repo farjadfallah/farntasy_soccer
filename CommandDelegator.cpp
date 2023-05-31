@@ -33,7 +33,7 @@ void CommandDeligator::handle_GET_command(int command_number){
         this->team_of_the_week();
         break;
     case PLAYERS:
-
+        this->players();
         break;
     case LEAGUE_STANDINGS:
 
@@ -129,7 +129,7 @@ int CommandDeligator::get_field_int(string field_name){
     return result;
 }
 
-std::string CommandDeligator::get_field_string(std::string field_name){
+string CommandDeligator::get_field_string(string field_name){
     string result = "";
     for(int i=0; i<words.size(); i++){
         if(words[i] == field_name){
@@ -140,9 +140,42 @@ std::string CommandDeligator::get_field_string(std::string field_name){
     return result;
 }
 
+bool CommandDeligator::has_certain_feild(string field_name){
+    for(int i=0; i<words.size(); i++){
+        if(words[i] == field_name){
+            return true;
+        }
+    }
+    return false;
+}
+
+string CommandDeligator::has_wich_field(vector<string> field_options){
+    for(int j=0; j< field_options.size(); j++){
+        for(int i=0; i<words.size(); i++){
+            if(words[i] == field_options[j]){
+                return field_options[j];
+            }
+        }
+    }
+    return "";
+}
+
 
 void CommandDeligator::team_of_the_week(){
     cout << "this is from team of the week" << endl;
     int week_num = get_field_int(WEEK_NUMBER_FIELD);
     fantasy_football->team_of_the_week(week_num);
+}
+
+void CommandDeligator::players(){
+    cout << "this is from players" << endl;
+    string team_name = get_field_string(TEAM_NAME_FIELD);
+    for(int i=0; i<team_name.size(); i++){
+        if(team_name[i] == '_'){
+            team_name[i] = ' ';
+        }
+    }
+    bool sorted = has_certain_feild(RANKED_FIELD);
+    string post = has_wich_field(POSITIONS_LIST);
+    fantasy_football->get_players_of_team(team_name, post, sorted);
 }
