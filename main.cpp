@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "Exceptions.hpp"
+#include "CommandProvider.hpp"
 
 using namespace std;
 
@@ -41,6 +42,11 @@ enum {
 
 int main(){
     FantasyFootball fantasy_football;
+    CommandProvider command_provider;
+    for(int i=0; i<40; i++){
+        command_provider.get_command();
+    }
+    
     fantasy_football.add_admin("admin" , "123456");
     fantasy_football.register_admin("admin" , "123456");
     fantasy_football.get_initial_data();
