@@ -26,4 +26,43 @@ const int NO_WEEK_SELECTED_FOR_WEEK_RESULT = -1;
 const std::string NO_TEAM_SELECTED = "";
 
 const int NOT_INJURED =0;
+
+const std::vector<std::string>  COMMAND_TYPES_LIST = { "POST", "GET", "PUT", "DELETE"};
+
+const std::vector<std::string>GET_COMMANDS_LIST = { "team_of_the_week", "players", "league_standings", "users_ranking", "matches_result_league", "squad"};
+
+const std::vector<std::string> POST_COMMANDS_LIST = {"signup", "login", "register_admin", "logout", "sell_player", "buy_player", "close_transfer_window", 
+                            "open_transfer_window", "pass_week"};
+
+enum {
+    POST,
+    GET,
+    PUT,
+    DELETE
+};
+
+enum {
+    SIGNUP,
+    LOGIN,
+    REGISTE_ADMIN,
+    LOGOUT,
+    SELL_PLAYER,
+    BUY_PLAYER,
+    CLOSE_TRANSFER_WINDOW,
+    OPEN_TRANSFER_WINDOW,
+    PASS_WEEK
+};
+
+enum {
+    TEAM_OF_THE_WEEK,
+    PLAYERS,
+    LEAGUE_STANDINGS,
+    USER_RANKING,
+    MATHCES_RESULT_LEAGUE,
+    SQUAD
+};
+
+
+const int COMMAND_TYPE_POSITION = 0;
+const int COMMAND_NAME_POSITION = 1;
 #endif

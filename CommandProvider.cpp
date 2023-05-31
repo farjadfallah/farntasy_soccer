@@ -28,7 +28,9 @@ vector<string> CommandProvider::parse_word_by_word(string line){
     string tmp_word;
     for(int i=0; i < line.size(); i++){
         if(line[i] == '\n' || line[i] == ' '){
-            words.push_back(tmp_word);
+            if(tmp_word!=""){
+                words.push_back(tmp_word);
+            }
             tmp_word.clear();
         }else{
             tmp_word.push_back(line[i]);

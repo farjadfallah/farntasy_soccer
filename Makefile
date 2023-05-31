@@ -1,7 +1,7 @@
 Build=build
 
-a.out: main.cpp ${Build}/FantasyFootball.o  ${Build}/CommandProvider.o  ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/FileReader.o Exceptions.hpp
-	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/CommandProvider.o  ${Build}/Admin.o  ${Build}/FantasyTeam.o ${Build}/Printer.o  ${Build}/FileReader.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
+a.out: main.cpp ${Build}/FantasyFootball.o ${Build}/CommandDelegator.o  ${Build}/CommandProvider.o  ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/FileReader.o Exceptions.hpp
+	g++ main.cpp ${Build}/FantasyFootball.o ${Build}/CommandDelegator.o ${Build}/CommandProvider.o  ${Build}/Admin.o  ${Build}/FantasyTeam.o ${Build}/Printer.o  ${Build}/FileReader.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/MatchResult.o ${Build}/WeekMatchResults.o ${Build}/Player.o ${Build}/SoccerClub.o -o a.out
 
 ${Build}/FantasyFootball.o : FantasyFootball.hpp FantasyFootball.cpp ${Build}/Admin.o ${Build}/Printer.o ${Build}/FantasyTeam.o   ${Build}/FileReader.o ${Build}/WeekMatchResults.o  ${Build}/MatchResult.o ${Build}/ReadFileUtil.o ${Build}/Positions.o ${Build}/Player.o ${Build}/SoccerClub.o Exceptions.hpp
 	g++ -c FantasyFootball.cpp -o ${Build}/FantasyFootball.o
@@ -38,6 +38,9 @@ ${Build}/Admin.o : Admin.hpp Admin.cpp Exceptions.hpp
 
 ${Build}/CommandProvider.o : CommandProvider.hpp CommandProvider.cpp 
 	g++ -c CommandProvider.cpp -o ${Build}/CommandProvider.o
+
+${Build}/CommandDelegator.o : CommandDelegator.hpp CommandDelegator.cpp FantasyFootball.cpp
+	g++ -c CommandDelegator.cpp -o ${Build}/CommandDelegator.o
 
 clear:
 	rm -rf ${Build} && mkdir -p ${Build} && rm ./a.out
