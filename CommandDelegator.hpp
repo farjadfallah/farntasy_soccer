@@ -12,6 +12,7 @@ class CommandDeligator {
         void players();
         void league_standings();
         void users_ranking();
+        void matches_result_league();
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
