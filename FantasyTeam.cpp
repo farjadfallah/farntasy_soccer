@@ -130,3 +130,16 @@ vector<shared_ptr<Player> > FantasyTeam::get_player_with_position(string post){
     }
     return selected_players;
 }
+
+bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
+    if(this->points > compared_to->points){
+        return true;
+    }
+    if(this->points == compared_to->points){
+        if(this->username.compare(compared_to->username) < 0){
+            return true;
+        }
+    }
+    return false;
+}
+

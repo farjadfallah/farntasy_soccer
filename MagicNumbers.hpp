@@ -23,7 +23,7 @@ const int DRAW =1;
 
 const int NO_WEEK_SELECTED_FOR_WEEK_RESULT = -1;
 
-const string NO_TEAM_SELECTED = "";
+const std::string NO_TEAM_SELECTED = "";
 
 const int NOT_INJURED =0;
 #endif

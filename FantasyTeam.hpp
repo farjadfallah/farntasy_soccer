@@ -14,6 +14,7 @@ class FantasyTeam {
         void pass_week(int new_week);
         void print();
         void squad(Printer& printer);
+        bool is_better_than(std::shared_ptr<FantasyTeam> compared_to);
     private:
         std::string username;
         std::string password;
@@ -30,6 +31,6 @@ class FantasyTeam {
         void check_if_team_can_buy_player(std::string post);
         int players_num_in_position(std::string position);
         double calculate_total_score(int week);
-        vector<shared_ptr<Player> > FantasyTeam::get_player_with_position(string post);
+        std::vector<std::shared_ptr<Player> > get_player_with_position(std::string post);
 
 };

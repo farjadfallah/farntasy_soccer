@@ -39,6 +39,8 @@ class FantasyFootball{
         void buy_player(std::string player_name);
         void sell_player(std::string player_name);
         void squad(std::string team_name = NO_TEAM_SELECTED);
+        void users_ranking();
+
     private:
         std::vector<std::shared_ptr<Player> > players_list;
         std::vector<std::shared_ptr<SoccerClub> > teams_list;
@@ -62,5 +64,6 @@ class FantasyFootball{
         
         void check_if_post_is_valid(std::string post);
         void sort_soccer_clubs_list();
+        void sort_fantasy_teams();
 };
 #endif

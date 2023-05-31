@@ -9,14 +9,13 @@ void Printer::print_matches_result_league(std::shared_ptr<WeekMatchResults> sele
         cout << selected_week->return_game_summary(i) << endl;
     }
 }
-// void print_fantasy_squad(std::string username, std::vector<std::shared_ptr<Player> >& goalkeepers,
-//                         std::vector<std::shared_ptr<Player> >& defenders, std::vector<std::shared_ptr<Player> >& midfielders,
-//                         std::vector<std::shared_ptr<Player> >& forwards){
+void Printer::print_fantasy_squad(std::string username, std::vector<std::shared_ptr<Player> >& goalkeepers,
+                        std::vector<std::shared_ptr<Player> >& defenders, std::vector<std::shared_ptr<Player> >& midfielders,
+                        std::vector<std::shared_ptr<Player> >& forwards){
     
-//     sort_alphabetically(defenders);
     
-//     cout << "fantasy_team: " << username << endl;
-//     cout << "Goalkeeper: " << goalkeepers[0]->
+    cout << "fantasy_team: " << username << endl;
+    // cout << "Goalkeeper: " ;
 
 
-// }
+}

@@ -298,7 +298,7 @@ void FantasyFootball::add_admin(string username, string password){
     admin_list.push_back(make_shared<Admin>(username, password));
 }
 
-void FantasyFootball::squad(std::string team_name = NO_TEAM_SELECTED){
+void FantasyFootball::squad(std::string team_name ){
     shared_ptr<FantasyTeam> selected_team;
     if(team_name != NO_TEAM_SELECTED){
         selected_team = find_fantasy_team_with_username(team_name);
@@ -312,4 +312,29 @@ void FantasyFootball::squad(std::string team_name = NO_TEAM_SELECTED){
     }
     selected_team->squad(printer);
     
+}
+
+void FantasyFootball::users_ranking(){
+    sort_fantasy_teams();
+    
+    for(shared_ptr<FantasyTeam> tmp : fantasy_teams_list){
+        tmp->print();
+    }
+    //print
+}
+
+void FantasyFootball::sort_fantasy_teams()
+{
+    for (int i = 0; i < fantasy_teams_list.size(); i++)
+    {
+        for (int j = i; j < fantasy_teams_list.size(); j++)
+        {
+            if (fantasy_teams_list[j]->is_better_than(fantasy_teams_list[i]))
+            {
+                shared_ptr<FantasyTeam> tmp = fantasy_teams_list[i];
+                fantasy_teams_list[i] = fantasy_teams_list[j];
+                fantasy_teams_list[j] = tmp;
+            }
+        }
+    }
 }
