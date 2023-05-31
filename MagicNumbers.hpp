@@ -65,4 +65,8 @@ enum {
 
 const int COMMAND_TYPE_POSITION = 0;
 const int COMMAND_NAME_POSITION = 1;
+
+//feilds name
+
+const std::string WEEK_NUMBER_FIELD = "week_num";
 #endif

@@ -30,7 +30,7 @@ void CommandDeligator::handle_GET_command(int command_number){
     switch (command_number)
     {
     case TEAM_OF_THE_WEEK:
-
+        this->team_of_the_week();
         break;
     case PLAYERS:
 
@@ -41,9 +41,12 @@ void CommandDeligator::handle_GET_command(int command_number){
     case USER_RANKING:
     
         break;
-    case MATHCES_RESULT_LEAGUE:
-
+    case MATHCES_RESULT_LEAGUE: {
+        int week_num = get_field_int("week_num");
+        cout << "this is the week" << week_num << endl;
+        fantasy_football->matches_result_league(week_num);
         break;
+    }
     case SQUAD:
     
         break;
@@ -71,7 +74,7 @@ void CommandDeligator::handle_POST_command(int command_number){
 
         break;
     case BUY_PLAYER:
-    
+
         break;
     case CLOSE_TRANSFER_WINDOW:
     
@@ -113,4 +116,33 @@ int CommandDeligator::get_POST_command_number(){
         }
     }
     throw(BAD_REQUEST());
+}
+
+int CommandDeligator::get_field_int(string field_name){
+    int result = -1;
+    for(int i=0; i<words.size(); i++){
+        if(words[i] == field_name){
+            result = stoi(words[i+1]);
+            break;
+        }
+    }
+    return result;
+}
+
+std::string CommandDeligator::get_field_string(std::string field_name){
+    string result = "";
+    for(int i=0; i<words.size(); i++){
+        if(words[i] == field_name){
+            result = words[i+1];
+            break;
+        }
+    }
+    return result;
+}
+
+
+void CommandDeligator::team_of_the_week(){
+    cout << "this is from team of the week" << endl;
+    int week_num = get_field_int(WEEK_NUMBER_FIELD);
+    fantasy_football->team_of_the_week(week_num);
 }

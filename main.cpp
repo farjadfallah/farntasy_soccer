@@ -14,19 +14,19 @@ int main(){
     CommandProvider command_provider;
     CommandDeligator command_deligator(&fantasy_football);
 
-    for(int i=0; i<40; i++){
-        vector<string> words = command_provider.get_command();
-        command_deligator.handle_command(words);
-    }
     
     fantasy_football.add_admin("admin" , "123456");
     fantasy_football.register_admin("admin" , "123456");
     fantasy_football.get_initial_data();
-    // fantasy_football.print();
-    // for(int i=0;i<19;i++){
-    //     fantasy_football.pass_week();
-    // }
+    for(int i=0;i<19;i++){
+        fantasy_football.pass_week();
+    }
     
+    for(int i=0; i<40; i++){
+        vector<string> words = command_provider.get_command();
+        command_deligator.handle_command(words);
+    }
+    // fantasy_football.print();
     fantasy_football.open_transfer_window();
     fantasy_football.logout();
     fantasy_football.signup("farjad" , "Farjad83");
