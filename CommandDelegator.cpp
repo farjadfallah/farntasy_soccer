@@ -81,7 +81,7 @@ void CommandDeligator::handle_POST_command(int command_number){
         this->open_transfer_window();
         break;
     case PASS_WEEK:
-    
+        this->pass_week();
         break;
     default:
         break;
@@ -259,4 +259,9 @@ void CommandDeligator::open_transfer_window(){
 void CommandDeligator::close_transfer_window(){
     cout << "this is from close_transfer_window" << endl;
     fantasy_football->close_transfer_window();
+}
+
+void CommandDeligator::pass_week(){
+    cout << "this is from pass_week" << endl;
+    fantasy_football->pass_week();
 }

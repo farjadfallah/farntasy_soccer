@@ -23,6 +23,7 @@ class CommandDeligator {
         void sell_player();
         void open_transfer_window();
         void close_transfer_window();
+        void pass_week();
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
