@@ -32,6 +32,7 @@ int main(){
     fantasy_football.buy_player("A. Semenyo");
     fantasy_football.buy_player("M. Senesi");
     fantasy_football.pass_week();
+    fantasy_football.logout();
     for(int i=0; i<40; i++){
         vector<string> words = command_provider.get_command();
         command_deligator.handle_command(words);

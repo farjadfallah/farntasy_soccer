@@ -57,7 +57,7 @@ void CommandDeligator::handle_POST_command(int command_number){
     switch (command_number)
     {
     case SIGNUP:
-
+        this->signup();
         break;
     case LOGIN:
 
@@ -135,7 +135,7 @@ string CommandDeligator::get_field_string(string field_name){
             break;
         }
     }
-    return "";
+    return result;
 }
 
 bool CommandDeligator::has_certain_feild(string field_name){
@@ -198,4 +198,12 @@ void CommandDeligator::squad(){
     cout << "this is from squad" << endl;
     string team_name = get_field_string(FANTASY_TEAM_FIELD);
     fantasy_football->squad(team_name);
+}
+
+void CommandDeligator::signup(){
+    cout << "this is from the signtp" << endl;
+    string username = get_field_string(TEAM_NAME_FIELD);
+    string password = get_field_string(PASSWORD_FEILD);
+    cout << "this is the name: |" << username << "| and this is the pass: |" << password << endl; 
+    fantasy_football->signup(username, password);
 }
