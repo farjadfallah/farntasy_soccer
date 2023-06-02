@@ -108,15 +108,15 @@ void FantasyFootball::team_of_the_week(int week)
     selected_players.push_back(find_best_player_at_position(week, MIDFIELDER));
     selected_players.push_back(find_best_player_at_position(week, FORWARD));
     // print the vector here
-    for (shared_ptr<Player> tmp : selected_players)
-    {
-        tmp->print();
-    }
+    printer.print_team_of_the_week(selected_players, week);
+    // for (shared_ptr<Player> tmp : selected_players)
+    // {
+    //     tmp->print();
+    // }
 }
 
 shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, string position, shared_ptr<Player> excluding)
 {
-    double highest_score = 0;
     shared_ptr<Player> selected_player;
     for (shared_ptr<Player> tmp : players_list)
     {
@@ -128,9 +128,7 @@ shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, strin
         {
             continue;
         }
-        if (tmp->get_score_at_week(week) > highest_score)
-        {
-            highest_score = tmp->get_score_at_week(week);
+        if(tmp->is_better_than_in_week(selected_player, week)){
             selected_player = tmp;
         }
     }

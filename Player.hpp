@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "MagicNumbers.hpp"
+#include <memory>
 
 class Player{
     public:
@@ -19,6 +20,9 @@ class Player{
         double average_points();
         bool can_play_next_week();
         void pass_week();
+        std::string team_of_the_week_output(int week);
+        bool is_better_than_in_week(std::shared_ptr<Player> compared_to, int week);
+        bool is_better_alphabetically(std::shared_ptr<Player> compared_to);
     private:
         std::string full_name;
         std::vector<double> ratings_each_week;

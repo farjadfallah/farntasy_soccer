@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Exceptions.hpp"
 #include "MagicNumbers.hpp"
+#include <memory>
 
 using namespace std;
 
@@ -102,4 +103,28 @@ void Player::pass_week(){
     add_new_point();
     pass_one_week_of_injury();
     reset_misses_next_match_status();
+}
+
+string Player::team_of_the_week_output(int week){
+    return this->full_name + " | score: " + to_string(this->get_score_at_week(week));
+}
+
+bool Player::is_better_than_in_week(shared_ptr<Player> compared_to, int week){
+    if(compared_to == NULL){
+        return true;
+    }
+    if (this->get_score_at_week(week) > compared_to->get_score_at_week(week)){
+           return true;
+    }
+    if(this->get_score_at_week(week) == compared_to->get_score_at_week(week)){
+        return this->is_better_alphabetically(compared_to);
+    }
+    return false;
+}
+
+bool Player::is_better_alphabetically(std::shared_ptr<Player> compared_to){
+    if(this->full_name.compare(compared_to->full_name) < 0){
+            return true;
+    }
+    return false;
 }

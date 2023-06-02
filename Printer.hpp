@@ -9,6 +9,8 @@
 
 class Printer{
     public:
+        void print_team_of_the_week(std::vector<std::shared_ptr<Player> >, int week);
+        
         void print_matches_result_league(std::shared_ptr<WeekMatchResults> selected_week);
         void print_fantasy_squad(std::string username, std::vector<std::shared_ptr<Player> >& goalkeepers,
                 std::vector<std::shared_ptr<Player> >& defenders, std::vector<std::shared_ptr<Player> >& midfielders,
