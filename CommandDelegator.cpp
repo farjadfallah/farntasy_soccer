@@ -75,10 +75,10 @@ void CommandDeligator::handle_POST_command(int command_number){
         this->buy_player();
         break;
     case CLOSE_TRANSFER_WINDOW:
-    
+        this->close_transfer_window();
         break;
     case OPEN_TRANSFER_WINDOW:
-
+        this->open_transfer_window();
         break;
     case PASS_WEEK:
     
@@ -249,4 +249,14 @@ void CommandDeligator::sell_player(){
     cout << "this is from sell_player" << endl;
     string player_name = get_player_name(words);
     fantasy_football->sell_player(player_name);
+}
+
+void CommandDeligator::open_transfer_window(){
+    cout << "this is from open_transfer_window" << endl;
+    fantasy_football->open_transfer_window();
+}
+
+void CommandDeligator::close_transfer_window(){
+    cout << "this is from close_transfer_window" << endl;
+    fantasy_football->close_transfer_window();
 }
