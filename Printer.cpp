@@ -42,7 +42,7 @@ void Printer::print_user_ranking(const std::vector<std::shared_ptr<FantasyTeam> 
 
 void Printer::print_matches_result_league(std::shared_ptr<WeekMatchResults> selected_week){
     for(int i=0; i<selected_week->size(); i++){
-        cout << selected_week->return_game_summary(i) << endl;
+        cout << selected_week->match_result_league_output(i) << endl;
     }
 }
 void Printer::print_fantasy_squad(std::string username, std::vector<std::shared_ptr<Player> >& goalkeepers,

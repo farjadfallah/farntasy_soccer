@@ -7,7 +7,7 @@
 class WeekMatchResults{
     public:
         void add_result(std::shared_ptr<MatchResult> new_match_result);
-        std::string return_game_summary(int number);
+        std::string match_result_league_output(int number);
         void print();
         int size() {return results_list.size();};
     private:

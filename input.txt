@@ -33,3 +33,4 @@ GET team_of_the_week
 GET players ? team_name Leeds_United
 GET league_standings
 GET users_ranking
+GET matches_result_league ? week_num 2

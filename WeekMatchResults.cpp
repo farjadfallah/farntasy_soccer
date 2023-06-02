@@ -16,7 +16,7 @@ void WeekMatchResults::print(){
 }
 
 
-std::string WeekMatchResults::return_game_summary(int number){
+std::string WeekMatchResults::match_result_league_output(int number){
     string result ;
     result = results_list[number]->first_team() + " " + to_string(results_list[number]->first_team_goals_for());
     result = result + " | ";

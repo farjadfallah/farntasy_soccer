@@ -27,7 +27,7 @@ ${Build}/MatchResult.o : MatchResult.hpp MatchResult.cpp  Exceptions.hpp
 ${Build}/WeekMatchResults.o : WeekMatchResults.hpp WeekMatchResults.cpp ${Build}/MatchResult.o Exceptions.hpp
 	g++ -c WeekMatchResults.cpp -o ${Build}/WeekMatchResults.o
 
-${Build}/Printer.o : Printer.hpp Printer.cpp  Exceptions.hpp
+${Build}/Printer.o : Printer.hpp Printer.cpp Exceptions.hpp ${Build}/Player.o ${Build}/SoccerClub.o ${Build}/FantasyTeam.o
 	g++ -c Printer.cpp -o ${Build}/Printer.o
 
 ${Build}/FantasyTeam.o : FantasyTeam.hpp FantasyTeam.cpp ${Build}/Player.o Exceptions.hpp ${Build}/Printer.o
