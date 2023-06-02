@@ -218,3 +218,10 @@ void CommandDeligator::logout(){
     cout << "this is from the logout" << endl;
     fantasy_football->logout();
 }
+
+void CommandDeligator::register_admin(){
+    cout << "this is from register admin" << endl;
+    string username = get_field_string(USERNAME_FEILD);
+    string password = get_field_string(PASSWORD_FEILD);
+    fantasy_football->register_admin(username, password);
+}

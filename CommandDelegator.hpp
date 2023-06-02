@@ -17,6 +17,7 @@ class CommandDeligator {
 
         void signup();
         void login();
+        void register_admin();
         void logout();
     private:
         FantasyFootball* fantasy_football;
