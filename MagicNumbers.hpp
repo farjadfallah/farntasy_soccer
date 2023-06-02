@@ -75,5 +75,6 @@ const std::string RANKED_FIELD = "ranks";
 const std::string FANTASY_TEAM_FIELD = "fantasy_team";
 const std::string PASSWORD_FEILD = "password";
 const std::string USERNAME_FEILD = "username";
+const std::string PLAYER_NAME_FEILD = "name";
 
 #endif

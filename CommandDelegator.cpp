@@ -63,16 +63,16 @@ void CommandDeligator::handle_POST_command(int command_number){
         this->login();
         break;
     case REGISTE_ADMIN:
-
+        this->register_admin();
         break;
     case LOGOUT:
         this->logout();
         break;
     case SELL_PLAYER:
-
+        this->sell_player();
         break;
     case BUY_PLAYER:
-
+        this->buy_player();
         break;
     case CLOSE_TRANSFER_WINDOW:
     
@@ -147,7 +147,7 @@ bool CommandDeligator::has_certain_feild(string field_name){
     return false;
 }
 
-string CommandDeligator::has_wich_field(vector<string> field_options){
+string CommandDeligator::has_which_field(vector<string> field_options){
     for(int j=0; j< field_options.size(); j++){
         for(int i=0; i<words.size(); i++){
             if(words[i] == field_options[j]){
@@ -157,7 +157,20 @@ string CommandDeligator::has_wich_field(vector<string> field_options){
     }
     return "";
 }
-
+string CommandDeligator::get_player_name(vector<string> field_options){
+    string result = "";
+    for(int i=0; i<words.size(); i++){
+        if(words[i] == PLAYER_NAME_FEILD){
+            result = words[i+1];
+            for(int j=i+2; j < words.size(); j++){
+                result +=" "; 
+                result += words[j];
+            }
+            break;
+        }
+    }
+    return result;
+}
 
 void CommandDeligator::team_of_the_week(){
     cout << "this is from team of the week" << endl;
@@ -174,7 +187,7 @@ void CommandDeligator::players(){
         }
     }
     bool sorted = has_certain_feild(RANKED_FIELD);
-    string post = has_wich_field(POSITIONS_LIST);
+    string post = has_which_field(POSITIONS_LIST);
     fantasy_football->get_players_of_team(team_name, post, sorted);
 }
 
@@ -224,4 +237,16 @@ void CommandDeligator::register_admin(){
     string username = get_field_string(USERNAME_FEILD);
     string password = get_field_string(PASSWORD_FEILD);
     fantasy_football->register_admin(username, password);
+}
+
+void CommandDeligator::buy_player(){
+    cout << "this is from buy_player" << endl;
+    string player_name = get_player_name(words);
+    fantasy_football->buy_player(player_name);
+}
+
+void CommandDeligator::sell_player(){
+    cout << "this is from sell_player" << endl;
+    string player_name = get_player_name(words);
+    fantasy_football->sell_player(player_name);
 }

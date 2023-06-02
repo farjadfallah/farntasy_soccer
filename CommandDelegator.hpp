@@ -19,6 +19,8 @@ class CommandDeligator {
         void login();
         void register_admin();
         void logout();
+        void buy_player();
+        void sell_player();
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
@@ -31,7 +33,9 @@ class CommandDeligator {
         int get_field_int(std::string field_name);
         std::string get_field_string(std::string field_name);
         bool has_certain_feild(std::string feild_name);
-        std::string has_wich_field(std::vector<std::string> field_options);
+        std::string has_which_field(std::vector<std::string> field_options);
+        std::string get_player_name(std::vector<std::string> field_options);
+
 };
 
 // const std::vector<std::string>GET_COMMANDS_LIST = { "team_of_the_week", "players", "league_standings", "users_ranking", "matches_result_league", "squad"};
