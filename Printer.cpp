@@ -14,6 +14,14 @@ void Printer::print_team_of_the_week(vector<shared_ptr<Player> > players_list, i
     cout << "Forward: " << players_list[4]->team_of_the_week_output(week) << endl;
 }
 
+void Printer::print_players_of_team(std::vector<std::shared_ptr<Player> > players_list){
+    cout << "list of players:" << endl;
+    for(int i=0; i<players_list.size(); i++){
+        cout << i+1 << ". " << players_list[i]->players_of_the_team_output() << endl;
+    }
+}
+
+
 void Printer::print_matches_result_league(std::shared_ptr<WeekMatchResults> selected_week){
     for(int i=0; i<selected_week->size(); i++){
         cout << selected_week->return_game_summary(i) << endl;

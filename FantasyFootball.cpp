@@ -158,7 +158,8 @@ void FantasyFootball::get_players_of_team(std::string team_name, string post, bo
         throw(NOT_FOUND());
     }
     check_if_post_is_valid(post);
-    selected_team->print_players_of_team(post, sorted);
+    vector<shared_ptr<Player> > selected_players = selected_team->print_players_of_team(post, sorted);
+    printer.print_players_of_team(selected_players);
 }
 
 void FantasyFootball::matches_result_league(int week_num)

@@ -105,9 +105,6 @@ void Player::pass_week(){
     reset_misses_next_match_status();
 }
 
-string Player::team_of_the_week_output(int week){
-    return this->full_name + " | score: " + to_string(this->get_score_at_week(week));
-}
 
 bool Player::is_better_than_in_week(shared_ptr<Player> compared_to, int week){
     if(compared_to == NULL){
@@ -127,4 +124,12 @@ bool Player::is_better_alphabetically(std::shared_ptr<Player> compared_to){
             return true;
     }
     return false;
+}
+
+string Player::team_of_the_week_output(int week){
+    return this->full_name + " | score: " + to_string(this->get_score_at_week(week));
+}
+
+string Player::players_of_the_team_output(){
+    return "name: " + full_name + " | role: " + this->get_position() + " | score: " + to_string(this->average_points());
 }

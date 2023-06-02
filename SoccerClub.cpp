@@ -59,7 +59,7 @@ bool SoccerClub::is_better_than(std::shared_ptr<SoccerClub> compared_to){
     return false;
 }
 
-void SoccerClub::print_players_of_team(std::string post, bool sorted){
+vector<shared_ptr<Player> > SoccerClub::print_players_of_team(std::string post, bool sorted){
     vector<shared_ptr<Player> > selected_list;
     for(shared_ptr<Player> tmp : players_in_team){
         if(tmp->get_position() == post || post == ALL_POSTS){
@@ -77,9 +77,6 @@ void SoccerClub::print_players_of_team(std::string post, bool sorted){
             }
         }
     }
-    for(auto tmp : selected_list){
-        tmp->print();
-    }
-    //print
+    return selected_list;
 }
 
