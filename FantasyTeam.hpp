@@ -1,8 +1,11 @@
+#ifndef __FANTASY__TEAM__
+#define __FANTASY__TEAM__
+
 #include <vector>
 #include <string>
 #include <memory>
 #include "Player.hpp"
-#include "Printer.hpp"
+
 class FantasyTeam {
     public:
         FantasyTeam(std::string _username, std::string password);
@@ -13,8 +16,10 @@ class FantasyTeam {
 
         void pass_week(int new_week);
         void print();
-        void squad(Printer& printer);
+        void squad();
         bool is_better_than(std::shared_ptr<FantasyTeam> compared_to);
+
+        std::string user_ranking_output();
     private:
         std::string username;
         std::string password;
@@ -33,3 +38,4 @@ class FantasyTeam {
         std::vector<std::shared_ptr<Player> > get_player_with_position(std::string post);
 
 };
+#endif

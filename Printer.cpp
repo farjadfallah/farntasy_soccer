@@ -3,9 +3,11 @@
 #include "Player.hpp"
 #include <iostream>
 #include "SoccerClub.hpp"
+#include "FantasyTeam.hpp"
+
 using namespace std;
 
-void Printer::print_team_of_the_week(vector<shared_ptr<Player> > players_list, int week){
+void Printer::print_team_of_the_week(const vector<shared_ptr<Player> >& players_list, int week){
     cout << "team of the week:" << endl;
     cout << "GoalKeeper: " << players_list[0]->team_of_the_week_output(week) << endl;
     cout << "Defender 1: " << players_list[1]->team_of_the_week_output(week) << endl;
@@ -14,20 +16,25 @@ void Printer::print_team_of_the_week(vector<shared_ptr<Player> > players_list, i
     cout << "Forward: " << players_list[4]->team_of_the_week_output(week) << endl;
 }
 
-void Printer::print_players_of_team(vector<shared_ptr<Player> > players_list){
+void Printer::print_players_of_team(const vector<shared_ptr<Player> >& players_list){
     cout << "list of players:" << endl;
     for(int i=0; i<players_list.size(); i++){
         cout << i+1 << ". " << players_list[i]->players_of_the_team_output() << endl;
     }
 }
 
-void Printer::print_clubs_standings(vector<shared_ptr<SoccerClub> > clubs_list){
+void Printer::print_clubs_standings(const vector<shared_ptr<SoccerClub> >& clubs_list){
     cout << "league standing:" << endl;
     for(int i=0; i<clubs_list.size(); i++){
         cout << i+1 << ". " << clubs_list[i]->league_standing_output() << endl;
     }
 }
 
+void Printer::print_user_ranking(const std::vector<std::shared_ptr<FantasyTeam> >& fantasy_teams_list){
+    for(int i=0; i<fantasy_teams_list.size(); i++){
+        cout << i+1 << ". " << fantasy_teams_list[i]->user_ranking_output() << endl;
+    }
+}
 
 
 

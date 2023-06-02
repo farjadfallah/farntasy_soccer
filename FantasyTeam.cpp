@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Exceptions.hpp"
 #include "MagicNumbers.hpp"
-#include "Printer.hpp"
 #include <map>
 
 using namespace std;
@@ -106,7 +105,7 @@ double FantasyTeam::calculate_total_score(int week){
     return total_score;
 }
 
-void FantasyTeam::squad(Printer& printer){
+void FantasyTeam::squad(){
     if(players_list_each_week.size() <= 0){
         throw(EMPTY());
     }
@@ -117,7 +116,7 @@ void FantasyTeam::squad(Printer& printer){
     vector<shared_ptr<Player> > defenders = get_player_with_position(DEFENDER);
     vector<shared_ptr<Player> > midfielders = get_player_with_position(MIDFIELDER);
     vector<shared_ptr<Player> > forwards = get_player_with_position(FORWARD);
-    printer.print_fantasy_squad(username, goalkeepers, defenders, midfielders, forwards);
+    // printer.print_fantasy_squad(username, goalkeepers, defenders, midfielders, forwards);
 }
 
 vector<shared_ptr<Player> > FantasyTeam::get_player_with_position(string post){
@@ -141,4 +140,9 @@ bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
     }
     return false;
 }
+
+std::string FantasyTeam::user_ranking_output(){
+    return "team_name: " + username + " | point: " + to_string(points);
+}
+
 

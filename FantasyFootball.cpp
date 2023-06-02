@@ -306,17 +306,13 @@ void FantasyFootball::squad(std::string team_name ){
     if(selected_team == NULL){
         throw(NOT_FOUND());
     }
-    selected_team->squad(printer);
+    selected_team->squad();
     
 }
 
 void FantasyFootball::users_ranking(){
     sort_fantasy_teams();
-    
-    for(shared_ptr<FantasyTeam> tmp : fantasy_teams_list){
-        tmp->print();
-    }
-    //print
+    printer.print_user_ranking(fantasy_teams_list);
 }
 
 void FantasyFootball::sort_fantasy_teams()
