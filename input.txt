@@ -1,0 +1,33 @@
+POST signup ? team_name farjad password fallah
+POST buy_player ? name D. Randolph
+POST buy_player ? name J. Manquillo
+POST buy_player ? name Tommi O'reilly
+POST buy_player ? name A. Semenyo
+POST buy_player ? name M. Senesi
+POST logout
+POST signup ? team_name farnoush password fallah
+POST buy_player ? name D. Randolph
+POST buy_player ? name J. Manquillo
+POST buy_player ? name Tommi O'reilly
+POST buy_player ? name A. Hickey
+POST buy_player ? name Danny Ings
+POST logout
+POST register_admin ? username admin password 123456
+POST pass_week
+POST logout
+POST login ? team_name farjad password fallah
+GET squad
+GET league_standings
+GET users_ranking
+POST logout
+POST register_admin ? username admin password 123456
+POST pass_week
+POST pass_week
+POST pass_week
+POST pass_week
+POST pass_week
+POST logout
+POST login ? team_name farjad password fallah
+GET squad
+GET league_standings
+GET users_ranking

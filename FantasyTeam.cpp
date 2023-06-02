@@ -88,16 +88,12 @@ void FantasyTeam::pass_week(int new_week){
     players_list_each_week.push_back(tmp_squad_players_list);
     players_bought_this_week = 0;
     players_sold_this_week = 0;
-    //should be done
-    //calculate the new week score if team was valid(5 players)
     if(tmp_squad_players_list.size() >= 5){
-        //add the new score to each_week_score_list
         points_each_week.push_back(calculate_total_score(new_week));
-        //add the new score to the total score
         points += calculate_total_score(new_week);
 
     }else{
-        //add 0 to new score each week score list
+        points_each_week.push_back(0);
     }
 
 }
@@ -111,6 +107,9 @@ double FantasyTeam::calculate_total_score(int week){
 }
 
 void FantasyTeam::squad(Printer& printer){
+    if(players_list_each_week.size() <= 0){
+        throw(EMPTY());
+    }
     if (players_list_each_week[players_list_each_week.size()-1].size() != 5){
         throw(EMPTY());
     }

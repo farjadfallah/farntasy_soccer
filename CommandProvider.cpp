@@ -4,13 +4,13 @@
 
 using namespace std;
 
-vector<string> CommandProvider::get_command(){
+bool CommandProvider::get_command(vector<string>& words){
     string line = prepare_raw_line();
-    vector<string> words = parse_word_by_word(line);
-    for(int i=0; i < words.size(); i++){
-        cout << "word number " << i << " is |" << words[i] << "|" << endl;
+    words = parse_word_by_word(line);
+    if(words.size() <= 0){
+        return false;
     }
-    return words;
+    return true;
 }
 
 string CommandProvider::prepare_raw_line(){

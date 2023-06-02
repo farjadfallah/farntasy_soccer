@@ -2,6 +2,7 @@
 #define __MAGIC__NUMBERS__
 #include <map>
 #include <string>
+#include <vector>
 const std::string GOALKEEPER = "gk";
 const std::string DEFENDER = "df";
 const std::string MIDFIELDER = "md";
@@ -28,6 +29,7 @@ const std::string NO_TEAM_SELECTED = "";
 
 const int NOT_INJURED =0;
 
+//commands list
 const std::vector<std::string>  COMMAND_TYPES_LIST = { "POST", "GET", "PUT", "DELETE"};
 
 const std::vector<std::string>GET_COMMANDS_LIST = { "team_of_the_week", "players", "league_standings", "users_ranking", "matches_result_league", "squad"};
@@ -63,12 +65,12 @@ enum {
     SQUAD
 };
 
-
+//headers position
 const int COMMAND_TYPE_POSITION = 0;
 const int COMMAND_NAME_POSITION = 1;
 
-//feilds name
 
+//feilds name
 const std::string WEEK_NUMBER_FIELD = "week_num";
 const std::string TEAM_NAME_FIELD = "team_name";
 const std::string RANKED_FIELD = "ranks";
@@ -77,4 +79,7 @@ const std::string PASSWORD_FEILD = "password";
 const std::string USERNAME_FEILD = "username";
 const std::string PLAYER_NAME_FEILD = "name";
 
+
+//messages
+const std::string SUCCESS_MESSAGE = "OK";
 #endif

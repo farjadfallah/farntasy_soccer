@@ -16,10 +16,18 @@ void CommandDeligator::handle_command(vector<string>& _words){
     switch (this->command_type())
     {
     case POST:
-        this->handle_POST_command(this->get_POST_command_number());
+        try{
+            this->handle_POST_command(this->get_POST_command_number());
+        }catch(Exceptions& err){
+            printer.print_error(err);
+        }
         break;
     case GET:
-        this->handle_GET_command(this->get_GET_command_number());
+        try{
+             this->handle_GET_command(this->get_GET_command_number());
+        }catch(Exceptions& err){
+            printer.print_error(err);
+        }
         break;
     default:
         break;
@@ -30,7 +38,7 @@ void CommandDeligator::handle_GET_command(int command_number){
     switch (command_number)
     {
     case TEAM_OF_THE_WEEK:
-        this->team_of_the_week();
+        this->team_of_the_week();          
         break;
     case PLAYERS:
         this->players();
@@ -58,30 +66,39 @@ void CommandDeligator::handle_POST_command(int command_number){
     {
     case SIGNUP:
         this->signup();
+        printer.print_request_successful();
         break;
     case LOGIN:
         this->login();
+        printer.print_request_successful();
         break;
     case REGISTE_ADMIN:
         this->register_admin();
+        printer.print_request_successful();
         break;
     case LOGOUT:
         this->logout();
+        printer.print_request_successful();
         break;
     case SELL_PLAYER:
         this->sell_player();
+        printer.print_request_successful();
         break;
     case BUY_PLAYER:
         this->buy_player();
+        printer.print_request_successful();
         break;
     case CLOSE_TRANSFER_WINDOW:
         this->close_transfer_window();
+        printer.print_request_successful();
         break;
     case OPEN_TRANSFER_WINDOW:
         this->open_transfer_window();
+        printer.print_request_successful();
         break;
     case PASS_WEEK:
         this->pass_week();
+        printer.print_request_successful();
         break;
     default:
         break;

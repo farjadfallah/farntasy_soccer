@@ -19,3 +19,11 @@ void Printer::print_fantasy_squad(std::string username, std::vector<std::shared_
 
 
 }
+
+void Printer::print_request_successful(){
+    cout << SUCCESS_MESSAGE << endl;
+}
+
+void Printer::print_error(Exceptions& err){
+    cout << err.error_message() << endl;
+}

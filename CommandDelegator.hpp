@@ -27,7 +27,7 @@ class CommandDeligator {
     private:
         FantasyFootball* fantasy_football;
         std::vector<std::string> words;
-        
+        Printer printer;
         int command_type();
         int get_GET_command_number();
         int get_POST_command_number();
@@ -41,7 +41,3 @@ class CommandDeligator {
 
 };
 
-// const std::vector<std::string>GET_COMMANDS_LIST = { "team_of_the_week", "players", "league_standings", "users_ranking", "matches_result_league", "squad"};
-
-// const std::vector<std::string> POST_COMMANDS_LIST = {"signup", "login", "register_admin", "logout", "sell_player", "buy_player", "close_transfer_window", 
-//                             "open_transfer_window", "pass_week"};

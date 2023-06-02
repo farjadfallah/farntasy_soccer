@@ -54,7 +54,7 @@ class FantasyFootball{
         FileReader file_reader;
         int active_week = 0;
         Printer printer;
-        bool transfer_window_open = false;
+        bool transfer_window_open = true;
 
         std::shared_ptr<SoccerClub> find_soccer_club_by_name(std::string fullname);
         std::shared_ptr<Player> find_player_by_name(std::string fullname);
