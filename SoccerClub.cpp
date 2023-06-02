@@ -80,3 +80,7 @@ vector<shared_ptr<Player> > SoccerClub::print_players_of_team(std::string post, 
     return selected_list;
 }
 
+
+std::string SoccerClub::league_standing_output(){
+    return name + ": score: " + to_string(score) + " | GF: " + to_string(goals_for) + " | GA: " + to_string(goals_against);
+}

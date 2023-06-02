@@ -2,7 +2,7 @@
 #include "Exceptions.hpp"
 #include "Player.hpp"
 #include <iostream>
-
+#include "SoccerClub.hpp"
 using namespace std;
 
 void Printer::print_team_of_the_week(vector<shared_ptr<Player> > players_list, int week){
@@ -14,12 +14,23 @@ void Printer::print_team_of_the_week(vector<shared_ptr<Player> > players_list, i
     cout << "Forward: " << players_list[4]->team_of_the_week_output(week) << endl;
 }
 
-void Printer::print_players_of_team(std::vector<std::shared_ptr<Player> > players_list){
+void Printer::print_players_of_team(vector<shared_ptr<Player> > players_list){
     cout << "list of players:" << endl;
     for(int i=0; i<players_list.size(); i++){
         cout << i+1 << ". " << players_list[i]->players_of_the_team_output() << endl;
     }
 }
+
+void Printer::print_clubs_standings(vector<shared_ptr<SoccerClub> > clubs_list){
+    cout << "league standing:" << endl;
+    for(int i=0; i<clubs_list.size(); i++){
+        cout << i+1 << ". " << clubs_list[i]->league_standing_output() << endl;
+    }
+}
+
+
+
+
 
 
 void Printer::print_matches_result_league(std::shared_ptr<WeekMatchResults> selected_week){
@@ -45,3 +56,5 @@ void Printer::print_request_successful(){
 void Printer::print_error(Exceptions& err){
     cout << err.error_message() << endl;
 }
+
+

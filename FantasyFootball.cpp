@@ -81,10 +81,7 @@ void FantasyFootball::print_players_resutls()
 void FantasyFootball::print_clubs_standings()
 {
     sort_soccer_clubs_list();
-    for (shared_ptr<SoccerClub> tmp : teams_list)
-    {
-        tmp->print();
-    }
+    printer.print_clubs_standings(teams_list);
 }
 
 void FantasyFootball::print()
