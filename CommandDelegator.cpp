@@ -60,13 +60,13 @@ void CommandDeligator::handle_POST_command(int command_number){
         this->signup();
         break;
     case LOGIN:
-
+        this->login();
         break;
     case REGISTE_ADMIN:
 
         break;
     case LOGOUT:
-
+        this->logout();
         break;
     case SELL_PLAYER:
 
@@ -204,6 +204,17 @@ void CommandDeligator::signup(){
     cout << "this is from the signtp" << endl;
     string username = get_field_string(TEAM_NAME_FIELD);
     string password = get_field_string(PASSWORD_FEILD);
-    cout << "this is the name: |" << username << "| and this is the pass: |" << password << endl; 
     fantasy_football->signup(username, password);
+}
+
+void CommandDeligator::login(){
+    cout << "this is from the login" << endl;
+    string username = get_field_string(TEAM_NAME_FIELD);
+    string password = get_field_string(PASSWORD_FEILD);
+    fantasy_football->login(username, password);
+}
+
+void CommandDeligator::logout(){
+    cout << "this is from the logout" << endl;
+    fantasy_football->logout();
 }
