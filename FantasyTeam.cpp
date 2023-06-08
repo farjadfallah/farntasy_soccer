@@ -47,15 +47,6 @@ void FantasyTeam::delete_player(shared_ptr<Player> new_player){
     throw(NOT_FOUND());
 }
 
-void FantasyTeam::print(){
-    cout << "this is the team_name: |" << username << "| and this is the score:" << points << endl;
-    cout << "and these are the players: " << endl;
-    for(shared_ptr<Player> tmp : tmp_squad_players_list ){
-        tmp->print();
-    }
-    cout << "---" << endl << endl;
-}
-
 void FantasyTeam::check_if_team_can_sell_player(){
     if(players_sold_this_week >= 2 ){
        throw(PERMISSION_DENIED());
@@ -68,7 +59,6 @@ void FantasyTeam::check_if_team_can_buy_player(string post){
         throw(PERMISSION_DENIED());
     }
     if(players_num_in_position(post) >= MAX_POSITION_NUMBER.at(post)){
-        cout << "max : " << MAX_POSITION_NUMBER.at(post) << " this: " << players_num_in_position(post) << endl;
         throw(BAD_REQUEST());
     }
 }

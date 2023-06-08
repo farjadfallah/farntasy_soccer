@@ -9,7 +9,6 @@ class Player{
     public:
         Player(std::string _full_name);
         virtual std::string get_position() = 0;
-        void print();
         bool has_certain_name(std::string name);
         void injured();
         void add_yellow_card();

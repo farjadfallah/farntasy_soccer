@@ -10,7 +10,6 @@
 
 class SoccerClub {
     public:
-        void print();
         void add_player(std::shared_ptr<Player> new_player);
         SoccerClub(std::string _name);
         bool has_certain_name(std::string name);

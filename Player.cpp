@@ -6,15 +6,6 @@
 
 using namespace std;
 
-void Player::print(){
-    cout << "     this is the player name: |" << full_name << "| post: |" << this->get_position() <<"| injured : " << injury << " yellowCards:" << yellow_card << " missed: "<< missed_next_match << endl;
-    cout << "Average rating is: " << average_points() << endl;
-    cout << "            these are the ratings:" << endl;
-    for(int i=0; i < ratings_each_week.size(); i++){
-        cout << "           week number " << i+1 << " : " << ratings_each_week[i] << endl;
-    }
-}
-
 Player::Player(string _full_name){
     full_name = _full_name;
 }

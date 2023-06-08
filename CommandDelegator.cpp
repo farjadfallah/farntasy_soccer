@@ -190,13 +190,11 @@ string CommandDeligator::get_player_name(vector<string> field_options){
 }
 
 void CommandDeligator::team_of_the_week(){
-    cout << "this is from team of the week" << endl;
     int week_num = get_field_int(WEEK_NUMBER_FIELD);
     fantasy_football->team_of_the_week(week_num);
 }
 
 void CommandDeligator::players(){
-    cout << "this is from players" << endl;
     string team_name = get_field_string(TEAM_NAME_FIELD);
     for(int i=0; i<team_name.size(); i++){
         if(team_name[i] == '_'){
@@ -209,76 +207,63 @@ void CommandDeligator::players(){
 }
 
 void CommandDeligator::league_standings(){
-    cout << "this is from league_standings" << endl;
     fantasy_football->print_clubs_standings();
 }
 
 void CommandDeligator::users_ranking(){
-    cout << "this is from users_ranking" << endl;
     fantasy_football->users_ranking();
 }
 
 void CommandDeligator::matches_result_league(){
-    cout << "this is from matches_result_league" << endl;
     int week_num = get_field_int(WEEK_NUMBER_FIELD);
     fantasy_football->matches_result_league(week_num);
 }
 
 void CommandDeligator::squad(){
-    cout << "this is from squad" << endl;
     string team_name = get_field_string(FANTASY_TEAM_FIELD);
     fantasy_football->squad(team_name);
 }
 
 void CommandDeligator::signup(){
-    cout << "this is from the signtp" << endl;
     string username = get_field_string(TEAM_NAME_FIELD);
     string password = get_field_string(PASSWORD_FEILD);
     fantasy_football->signup(username, password);
 }
 
 void CommandDeligator::login(){
-    cout << "this is from the login" << endl;
     string username = get_field_string(TEAM_NAME_FIELD);
     string password = get_field_string(PASSWORD_FEILD);
     fantasy_football->login(username, password);
 }
 
 void CommandDeligator::logout(){
-    cout << "this is from the logout" << endl;
     fantasy_football->logout();
 }
 
 void CommandDeligator::register_admin(){
-    cout << "this is from register admin" << endl;
     string username = get_field_string(USERNAME_FEILD);
     string password = get_field_string(PASSWORD_FEILD);
     fantasy_football->register_admin(username, password);
 }
 
 void CommandDeligator::buy_player(){
-    cout << "this is from buy_player" << endl;
     string player_name = get_player_name(words);
     fantasy_football->buy_player(player_name);
 }
 
 void CommandDeligator::sell_player(){
-    cout << "this is from sell_player" << endl;
     string player_name = get_player_name(words);
     fantasy_football->sell_player(player_name);
 }
 
 void CommandDeligator::open_transfer_window(){
-    cout << "this is from open_transfer_window" << endl;
     fantasy_football->open_transfer_window();
 }
 
 void CommandDeligator::close_transfer_window(){
-    cout << "this is from close_transfer_window" << endl;
     fantasy_football->close_transfer_window();
 }
 
 void CommandDeligator::pass_week(){
-    cout << "this is from pass_week" << endl;
     fantasy_football->pass_week();
 }

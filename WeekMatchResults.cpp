@@ -9,11 +9,6 @@ void WeekMatchResults::add_result(shared_ptr<MatchResult> new_match_result){
     results_list.push_back(new_match_result);
 }
 
-void WeekMatchResults::print(){
-    for(shared_ptr<MatchResult> tmp : results_list){
-        tmp->print();
-    }
-}
 
 
 std::string WeekMatchResults::match_result_league_output(int number){

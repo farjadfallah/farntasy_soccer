@@ -56,26 +56,6 @@ shared_ptr<SoccerClub> FantasyFootball::find_soccer_club_by_name(string fullname
     return NULL;
 }
 
-void FantasyFootball::print_weeks_resutls()
-{
-    for (int i = 0; i < weeks_results_list.size(); i++)
-    {
-        cout << "this is week number " << i + 1 << ": " << endl;
-        weeks_results_list[i]->print();
-        cout << endl
-             << endl;
-    }
-}
-
-void FantasyFootball::print_players_resutls()
-{
-    for (int i = 0; i < players_list.size(); i++)
-    {
-        players_list[i]->print();
-        cout << endl
-             << endl;
-    }
-}
 
 void FantasyFootball::print_clubs_standings()
 {
@@ -83,13 +63,7 @@ void FantasyFootball::print_clubs_standings()
     printer.print_clubs_standings(teams_list);
 }
 
-void FantasyFootball::print()
-{
-    for (shared_ptr<SoccerClub> tmp : teams_list)
-    {
-        tmp->print();
-    }
-}
+
 
 void FantasyFootball::team_of_the_week(int week)
 {
@@ -103,12 +77,9 @@ void FantasyFootball::team_of_the_week(int week)
     selected_players.push_back(find_best_player_at_position(week, DEFENDER, selected_players[1]));
     selected_players.push_back(find_best_player_at_position(week, MIDFIELDER));
     selected_players.push_back(find_best_player_at_position(week, FORWARD));
-    // print the vector here
+
     printer.print_team_of_the_week(selected_players, week);
-    // for (shared_ptr<Player> tmp : selected_players)
-    // {
-    //     tmp->print();
-    // }
+
 }
 
 shared_ptr<Player> FantasyFootball::find_best_player_at_position(int week, string position, shared_ptr<Player> excluding)

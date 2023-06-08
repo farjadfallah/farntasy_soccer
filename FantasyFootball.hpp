@@ -17,9 +17,7 @@
 class FantasyFootball{
     public:
         void get_initial_data();
-        void print();
         void print_weeks_resutls();
-        void print_players_resutls();
         void add_admin(std::string username, std::string pass_word);
         void pass_week();
         

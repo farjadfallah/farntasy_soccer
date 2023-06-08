@@ -8,10 +8,6 @@ using namespace std;
 
 
 
-void MatchResult::print(){
-    cout << first_team_name << " " << first_team_goals << " : " << second_team_goals << " " << second_team_name << endl;
-}
-
 MatchResult::MatchResult(string _first_team, string _second_team, int _first_team_goals,int _second_team_goals){
     first_team_name = _first_team;
     second_team_name = _second_team;

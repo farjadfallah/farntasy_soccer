@@ -14,7 +14,6 @@ class FantasyTeam {
         void delete_player(std::shared_ptr<Player> new_player);
 
         void pass_week(int new_week);
-        void print();
         std::vector<std::shared_ptr<Player> > squad();
         bool is_better_than(std::shared_ptr<FantasyTeam> compared_to);
 
