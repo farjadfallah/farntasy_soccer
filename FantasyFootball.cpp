@@ -29,7 +29,6 @@ void FantasyFootball::pass_week()
     for (shared_ptr<FantasyTeam> tmp : fantasy_teams_list)
     {
         tmp->pass_week(active_week);
-        tmp->print();
     }
 }
 
@@ -306,8 +305,8 @@ void FantasyFootball::squad(std::string team_name ){
     if(selected_team == NULL){
         throw(NOT_FOUND());
     }
-    selected_team->squad();
-    
+    vector<shared_ptr<Player> > squad = selected_team->squad();
+    printer.print_fantasy_squad(selected_team, squad);
 }
 
 void FantasyFootball::users_ranking(){

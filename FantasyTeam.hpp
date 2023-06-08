@@ -5,7 +5,6 @@
 #include <string>
 #include <memory>
 #include "Player.hpp"
-
 class FantasyTeam {
     public:
         FantasyTeam(std::string _username, std::string password);
@@ -16,10 +15,12 @@ class FantasyTeam {
 
         void pass_week(int new_week);
         void print();
-        void squad();
+        std::vector<std::shared_ptr<Player> > squad();
         bool is_better_than(std::shared_ptr<FantasyTeam> compared_to);
 
         std::string user_ranking_output();
+        std::string fantasy_squad_name_output();
+        std::string fantasy_squad_points_output();
     private:
         std::string username;
         std::string password;
@@ -35,7 +36,8 @@ class FantasyTeam {
         void check_if_team_can_buy_player(std::string post);
         int players_num_in_position(std::string position);
         double calculate_total_score(int week);
-        std::vector<std::shared_ptr<Player> > get_player_with_position(std::string post);
+        std::shared_ptr<Player> get_next_player_with_position(std::string post, std::vector<std::shared_ptr<Player> >& selected_previously);
+        std::vector<std::shared_ptr<Player> > prepare_squad();
 
 };
 #endif

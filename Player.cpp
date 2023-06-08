@@ -120,6 +120,9 @@ bool Player::is_better_than_in_week(shared_ptr<Player> compared_to, int week){
 }
 
 bool Player::is_better_alphabetically(std::shared_ptr<Player> compared_to){
+    if(compared_to == NULL){
+        return true;
+    }
     if(this->full_name.compare(compared_to->full_name) < 0){
             return true;
     }
@@ -132,4 +135,8 @@ string Player::team_of_the_week_output(int week){
 
 string Player::players_of_the_team_output(){
     return "name: " + full_name + " | role: " + this->get_position() + " | score: " + to_string(this->average_points());
+}
+
+std::string Player::fantasy_squad_output(){
+    return full_name;
 }

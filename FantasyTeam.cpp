@@ -105,28 +105,48 @@ double FantasyTeam::calculate_total_score(int week){
     return total_score;
 }
 
-void FantasyTeam::squad(){
+vector<shared_ptr<Player> >  FantasyTeam::squad(){
     if(players_list_each_week.size() <= 0){
         throw(EMPTY());
     }
     if (players_list_each_week[players_list_each_week.size()-1].size() != 5){
         throw(EMPTY());
     }
-    vector<shared_ptr<Player> > goalkeepers = get_player_with_position(GOALKEEPER);
-    vector<shared_ptr<Player> > defenders = get_player_with_position(DEFENDER);
-    vector<shared_ptr<Player> > midfielders = get_player_with_position(MIDFIELDER);
-    vector<shared_ptr<Player> > forwards = get_player_with_position(FORWARD);
-    // printer.print_fantasy_squad(username, goalkeepers, defenders, midfielders, forwards);
+    return prepare_squad();
 }
 
-vector<shared_ptr<Player> > FantasyTeam::get_player_with_position(string post){
-    vector<shared_ptr<Player> > selected_players;
+
+vector<shared_ptr<Player> > FantasyTeam::prepare_squad(){
+    vector<shared_ptr<Player> > squad;
+    squad.push_back(get_next_player_with_position(GOALKEEPER, squad));
+    squad.push_back(get_next_player_with_position(DEFENDER, squad));
+    squad.push_back(get_next_player_with_position(DEFENDER, squad));
+    squad.push_back(get_next_player_with_position(MIDFIELDER, squad));
+    squad.push_back(get_next_player_with_position(FORWARD, squad));
+    return squad;
+}
+
+shared_ptr<Player> FantasyTeam::get_next_player_with_position(string post, vector<shared_ptr<Player> >& selected_previously){
+    shared_ptr<Player> selected_player;
     for(shared_ptr<Player> tmp : players_list_each_week[players_list_each_week.size()-1]){
-        if(tmp->get_position() == post){
-            selected_players.push_back(tmp);
+        if(tmp->get_position() != post){
+            continue;
         }
+        if(!tmp->is_better_alphabetically(selected_player)){
+            continue;
+        }
+        bool is_duplicate = false;
+        for(shared_ptr<Player> compared_to : selected_previously){
+            if(tmp == compared_to){
+                is_duplicate = true;
+            }
+        }
+        if(is_duplicate){
+            continue;
+        }
+        selected_player = tmp;
     }
-    return selected_players;
+    return selected_player;
 }
 
 bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
@@ -141,8 +161,13 @@ bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
     return false;
 }
 
-std::string FantasyTeam::user_ranking_output(){
+string FantasyTeam::user_ranking_output(){
     return "team_name: " + username + " | point: " + to_string(points);
 }
 
-
+string FantasyTeam::fantasy_squad_name_output(){
+    return username;
+}
+string FantasyTeam::fantasy_squad_points_output(){
+    return to_string(points);
+}

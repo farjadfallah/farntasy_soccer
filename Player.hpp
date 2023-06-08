@@ -25,6 +25,7 @@ class Player{
 
         std::string team_of_the_week_output(int week);
         std::string players_of_the_team_output();
+        std::string fantasy_squad_output();
     private:
         std::string full_name;
         std::vector<double> ratings_each_week;

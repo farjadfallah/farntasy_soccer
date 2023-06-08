@@ -36,24 +36,22 @@ void Printer::print_user_ranking(const std::vector<std::shared_ptr<FantasyTeam> 
     }
 }
 
-
-
-
-
 void Printer::print_matches_result_league(std::shared_ptr<WeekMatchResults> selected_week){
     for(int i=0; i<selected_week->size(); i++){
         cout << selected_week->match_result_league_output(i) << endl;
     }
 }
-void Printer::print_fantasy_squad(std::string username, std::vector<std::shared_ptr<Player> >& goalkeepers,
-                        std::vector<std::shared_ptr<Player> >& defenders, std::vector<std::shared_ptr<Player> >& midfielders,
-                        std::vector<std::shared_ptr<Player> >& forwards){
-    
-    
-    cout << "fantasy_team: " << username << endl;
-    // cout << "Goalkeeper: " ;
 
 
+
+void Printer::print_fantasy_squad(shared_ptr<FantasyTeam> selected_team, std::vector<std::shared_ptr<Player> >& squad){
+    cout << "fantasy_team: " << selected_team->fantasy_squad_name_output() << endl;
+    cout << "Goalkeeper: " << squad[0]->fantasy_squad_output() << endl;
+    cout << "Defender1: " << squad[1]->fantasy_squad_output() << endl;
+    cout << "Defender2: " << squad[2]->fantasy_squad_output() << endl;
+    cout << "Midfielder: " << squad[3]->fantasy_squad_output() << endl;
+    cout << "Striker: " << squad[4]->fantasy_squad_output() << endl;
+    cout << "Total Points: " << selected_team->fantasy_squad_points_output() << endl;
 }
 
 void Printer::print_request_successful(){

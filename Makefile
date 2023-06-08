@@ -30,7 +30,7 @@ ${Build}/WeekMatchResults.o : WeekMatchResults.hpp WeekMatchResults.cpp ${Build}
 ${Build}/Printer.o : Printer.hpp Printer.cpp Exceptions.hpp ${Build}/Player.o ${Build}/SoccerClub.o ${Build}/FantasyTeam.o
 	g++ -c Printer.cpp -o ${Build}/Printer.o
 
-${Build}/FantasyTeam.o : FantasyTeam.hpp FantasyTeam.cpp ${Build}/Player.o Exceptions.hpp ${Build}/Printer.o
+${Build}/FantasyTeam.o : FantasyTeam.hpp FantasyTeam.cpp ${Build}/Player.o Exceptions.hpp 
 	g++ -c FantasyTeam.cpp -o ${Build}/FantasyTeam.o
 
 ${Build}/Admin.o : Admin.hpp Admin.cpp Exceptions.hpp
