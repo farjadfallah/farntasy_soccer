@@ -134,7 +134,7 @@ int CommandDeligator::get_POST_command_number(){
 }
 
 int CommandDeligator::get_field_int(string field_name){
-    int result = -1;
+    int result = DEFAULT_INT_FEILD;
     for(int i=0; i<words.size(); i++){
         if(words[i] == field_name){
             result = stoi(words[i+1]);

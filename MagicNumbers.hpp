@@ -79,8 +79,19 @@ const std::string FANTASY_TEAM_FIELD = "fantasy_team";
 const std::string PASSWORD_FEILD = "password";
 const std::string USERNAME_FEILD = "username";
 const std::string PLAYER_NAME_FEILD = "name";
-
+const int DEFAULT_INT_FEILD = -1;
 
 //messages
 const std::string SUCCESS_MESSAGE = "OK";
+
+//maxes
+const int MAX_PLAYER_SOLD_EACH_WEEK = 2;
+const int MAX_PLAYER_BOUGHT_EACH_WEEK = 1;
+const int FANTASY_TEAM_SIZE = 5;
+const int MAX_PERCISION_IN_DOUBLES = 1;
+const int INJURY_PERIOD = 3;
+const int YELLOW_CARD_TRESHOLD = 3;
+//admin info
+const std::string DEFAULT_ADMIN_USER = "admin";
+const std::string DEFAULT_ADMIN_PASS = "123456"; 
 #endif

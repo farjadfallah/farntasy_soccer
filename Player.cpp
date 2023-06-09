@@ -18,12 +18,12 @@ bool Player::has_certain_name(string name){
     return false;
 }
 void Player::injured(){
-    injury = 3;
+    injury = INJURY_PERIOD;
 }
 
 void Player::add_yellow_card(){
     yellow_card ++;
-    if(yellow_card >= 3){
+    if(yellow_card >= YELLOW_CARD_TRESHOLD){
         missed_next_match = true;
         yellow_card = 0;
     }
@@ -78,14 +78,14 @@ double Player::average_points(){
         }
     }
     if(active_days!=0){
-        return standardize_digits(total_rating/active_days, 1);
+        return standardize_digits(total_rating/active_days, MAX_PERCISION_IN_DOUBLES);
     }
     return 0;
 }
 
 double Player::standardize_digits(double number, int digits){
     double result;
-    double divider =1;
+    double divider = MAX_PERCISION_IN_DOUBLES;
     for(int i=0; i<digits+1; i++){
         divider *=10;
     }
@@ -143,7 +143,7 @@ bool Player::is_better_alphabetically(std::shared_ptr<Player> compared_to){
 
 string Player::team_of_the_week_output(int week){
     stringstream stream;  
-    stream.precision(1);
+    stream.precision(MAX_PERCISION_IN_DOUBLES);
     stream << fixed;
     stream << this->get_score_at_week(week);  
 
@@ -152,7 +152,7 @@ string Player::team_of_the_week_output(int week){
 
 string Player::players_of_the_team_output(){
     stringstream stream;  
-    stream.precision(1);
+    stream.precision(MAX_PERCISION_IN_DOUBLES);
     stream << fixed;
     stream << this->average_points();  
     

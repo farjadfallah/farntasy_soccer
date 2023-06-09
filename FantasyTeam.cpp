@@ -31,7 +31,7 @@ void FantasyTeam::add_player(shared_ptr<Player> new_player){
     check_if_team_can_buy_player(new_player->get_position());
     tmp_squad_players_list.push_back(new_player);
     players_bought_this_week ++;
-    if(tmp_squad_players_list.size() == 5){
+    if(tmp_squad_players_list.size() == FANTASY_TEAM_SIZE){
         once_completed = true;
     }
 }
@@ -49,14 +49,14 @@ void FantasyTeam::delete_player(shared_ptr<Player> new_player){
 }
 
 void FantasyTeam::check_if_team_can_sell_player(){
-    if(players_sold_this_week >= 2 ){
+    if(players_sold_this_week >= MAX_PLAYER_SOLD_EACH_WEEK ){
        throw(PERMISSION_DENIED());
     }
     return;
 }
 
 void FantasyTeam::check_if_team_can_buy_player(string post){
-    if(players_bought_this_week >=1 && once_completed){
+    if(players_bought_this_week >= MAX_PLAYER_BOUGHT_EACH_WEEK && once_completed){
         throw(PERMISSION_DENIED());
     }
     if(players_num_in_position(post) >= MAX_POSITION_NUMBER.at(post)){
@@ -78,7 +78,7 @@ void FantasyTeam::pass_week(int new_week){
     players_list_each_week.push_back(tmp_squad_players_list);
     players_bought_this_week = 0;
     players_sold_this_week = 0;
-    if(tmp_squad_players_list.size() >= 5){
+    if(tmp_squad_players_list.size() >= FANTASY_TEAM_SIZE){
         points_each_week.push_back(calculate_total_score(new_week));
         points += calculate_total_score(new_week);
 
@@ -100,7 +100,7 @@ vector<shared_ptr<Player> >  FantasyTeam::squad(){
     if(players_list_each_week.size() <= 0){
         throw(EMPTY());
     }
-    if (players_list_each_week[players_list_each_week.size()-1].size() != 5){
+    if (players_list_each_week[players_list_each_week.size()-1].size() != FANTASY_TEAM_SIZE){
         throw(EMPTY());
     }
     return prepare_squad();
@@ -154,7 +154,7 @@ bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
 
 string FantasyTeam::user_ranking_output(){
     stringstream stream;  
-    stream.precision(1);
+    stream.precision(MAX_PERCISION_IN_DOUBLES);
     stream << fixed;
     stream << this->points;  
 
@@ -167,7 +167,7 @@ string FantasyTeam::fantasy_squad_name_output(){
 }
 string FantasyTeam::fantasy_squad_points_output(){
     stringstream stream;  
-    stream.precision(1);
+    stream.precision(MAX_PERCISION_IN_DOUBLES);
     stream << fixed;
     stream << this->points;  
     
