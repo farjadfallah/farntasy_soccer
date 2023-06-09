@@ -1,0 +1,24 @@
+Bad Request
+Bad Request
+Bad Request
+OK
+OK
+OK
+OK
+OK
+This player is not available for next week
+This player is not available for next week
+OK
+This player is not available for next week
+OK
+OK
+OK
+Empty
+Bad Request
+Empty
+OK
+OK
+Bad Request
+Bad Request
+OK
+OK

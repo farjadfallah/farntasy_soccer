@@ -37,6 +37,9 @@ bool ReadFileUtil::get_word_untill_delimiter(std::string& word, char delimiter, 
         if (tmp == first_end_sign){
             return false;
         }
+        if (tmp == '\n'){
+            return false;
+        }
          if (tmp == second_end_sign){
             file.get(dump);
             return false;

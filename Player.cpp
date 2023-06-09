@@ -3,6 +3,7 @@
 #include "Exceptions.hpp"
 #include "MagicNumbers.hpp"
 #include <memory>
+#include <sstream>
 
 using namespace std;
 
@@ -76,7 +77,27 @@ double Player::average_points(){
             active_days ++;
         }
     }
-    return total_rating/active_days;
+    if(active_days!=0){
+        return standardize_digits(total_rating/active_days, 1);
+    }
+    return 0;
+}
+
+double Player::standardize_digits(double number, int digits){
+    double result;
+    double divider =1;
+    for(int i=0; i<digits+1; i++){
+        divider *=10;
+    }
+    int raw_number = (int)(number * divider);
+    int remainder = (raw_number % 10);
+    if(remainder >=5){
+        result = (raw_number-remainder+10) / divider;
+    }
+    if(remainder <5){
+        result = (raw_number-remainder) / divider;
+    }
+    return result;
 }
 
 bool Player::can_play_next_week(){
@@ -121,11 +142,21 @@ bool Player::is_better_alphabetically(std::shared_ptr<Player> compared_to){
 }
 
 string Player::team_of_the_week_output(int week){
-    return this->full_name + " | score: " + to_string(this->get_score_at_week(week));
+    stringstream stream;  
+    stream.precision(1);
+    stream << fixed;
+    stream << this->get_score_at_week(week);  
+
+    return this->full_name + " | score: " + stream.str();
 }
 
 string Player::players_of_the_team_output(){
-    return "name: " + full_name + " | role: " + this->get_position() + " | score: " + to_string(this->average_points());
+    stringstream stream;  
+    stream.precision(1);
+    stream << fixed;
+    stream << this->average_points();  
+    
+    return "name: " + full_name + " | role: " + this->get_position() + " | score: " + stream.str();
 }
 
 std::string Player::fantasy_squad_output(){

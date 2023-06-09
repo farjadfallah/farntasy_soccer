@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Exceptions.hpp"
 #include "MagicNumbers.hpp"
+#include "sstream"
 #include <map>
 
 using namespace std;
@@ -152,12 +153,23 @@ bool FantasyTeam::is_better_than(shared_ptr<FantasyTeam> compared_to){
 }
 
 string FantasyTeam::user_ranking_output(){
-    return "team_name: " + username + " | point: " + to_string(points);
+    stringstream stream;  
+    stream.precision(1);
+    stream << fixed;
+    stream << this->points;  
+
+
+    return "team_name: " + username + " | point: " + stream.str();
 }
 
 string FantasyTeam::fantasy_squad_name_output(){
     return username;
 }
 string FantasyTeam::fantasy_squad_points_output(){
-    return to_string(points);
+    stringstream stream;  
+    stream.precision(1);
+    stream << fixed;
+    stream << this->points;  
+    
+    return stream.str();
 }

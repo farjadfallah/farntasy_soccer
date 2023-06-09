@@ -141,8 +141,12 @@ void FantasyFootball::matches_result_league(int week_num)
     }
     else
     {
+        if(weeks_results_list.size() <= 0){
+            throw(BAD_REQUEST());
+        }
         selected_week = weeks_results_list.back();
     }
+    
     printer.print_matches_result_league(selected_week);
 }
 
@@ -228,7 +232,7 @@ void FantasyFootball::close_transfer_window(){
 
 void FantasyFootball::buy_player(std::string player_name){
     if(active_fantasy_team_user==NULL){
-        throw (BAD_REQUEST());
+        throw (PERMISSION_DENIED());
     }
     if(!transfer_window_open){
         throw(PERMISSION_DENIED());
@@ -245,7 +249,7 @@ void FantasyFootball::buy_player(std::string player_name){
 
 void FantasyFootball::sell_player(std::string player_name){
     if(active_fantasy_team_user==NULL){
-        throw (BAD_REQUEST());
+        throw (PERMISSION_DENIED());
     }
     if(!transfer_window_open){
         throw(PERMISSION_DENIED());

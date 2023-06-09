@@ -35,5 +35,7 @@ class Player{
         void add_new_point();
         void pass_one_week_of_injury();
         void reset_misses_next_match_status();
+        double standardize_digits(double number, int digits);
+
 };
 #endif

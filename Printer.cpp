@@ -24,7 +24,7 @@ void Printer::print_players_of_team(const vector<shared_ptr<Player> >& players_l
 }
 
 void Printer::print_clubs_standings(const vector<shared_ptr<SoccerClub> >& clubs_list){
-    cout << "league standing:" << endl;
+    cout << "league standings:" << endl;
     for(int i=0; i<clubs_list.size(); i++){
         cout << i+1 << ". " << clubs_list[i]->league_standing_output() << endl;
     }

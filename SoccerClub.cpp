@@ -46,6 +46,12 @@ bool SoccerClub::is_better_than(std::shared_ptr<SoccerClub> compared_to){
             if(this->goals_for > compared_to->goals_for){
                 return true;
             }
+            if(this->goals_for == compared_to->goals_for){
+                if(this->name.compare(compared_to->name) < 0){
+                    return true;
+                }
+                return false;
+            }
         }
     }
     return false;
@@ -62,6 +68,21 @@ vector<shared_ptr<Player> > SoccerClub::print_players_of_team(std::string post, 
         for(int i=0; i<selected_list.size(); i++){
             for(int j=i; j<selected_list.size(); j++){
                 if(selected_list[i]->average_points() < selected_list[j]->average_points()){
+                    shared_ptr<Player> tmp = selected_list[i];
+                    selected_list[i] = selected_list[j];
+                    selected_list[j] = tmp;
+                }
+                if(selected_list[i]->average_points() == selected_list[j]->average_points() && selected_list[j]->is_better_alphabetically(selected_list[i])){
+                    shared_ptr<Player> tmp = selected_list[i];
+                    selected_list[i] = selected_list[j];
+                    selected_list[j] = tmp;
+                }
+            }
+        }
+    }else{
+        for(int i=0; i<selected_list.size(); i++){
+            for(int j=i; j<selected_list.size(); j++){
+                if(selected_list[j]->is_better_alphabetically(selected_list[i])){
                     shared_ptr<Player> tmp = selected_list[i];
                     selected_list[i] = selected_list[j];
                     selected_list[j] = tmp;
